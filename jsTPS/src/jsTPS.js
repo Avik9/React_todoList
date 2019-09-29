@@ -53,7 +53,18 @@ import jsTPS_Transaction from jsTPS
      * @param transaction The custom transaction to be added to
      * the transaction processing system stack and executed.
      */
-    addTransaction()
+    addTransaction(transaction)
+    {
+        // ARE THERE OLD UNDONE TRANSACTIONS ON THE STACK THAT FIRST
+        // NEED TO BE CLEARED OUT, i.e. ARE WE BRANCHING?
+        if((this.mostRecentTransaction < 0) || ((this.mostRecentTransaction) < (this.transactions.length - 1)))
+        {
+            for(let i = this.transactions.length - 1; i > this.mostRecentTransaction; i--)
+            {
+                this.transactions.slice(i);
+            }
+        }
+    }
      
     
  }
