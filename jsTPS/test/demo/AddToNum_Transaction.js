@@ -1,17 +1,19 @@
-import jsTPS_Transaction from jsTPS_Transaction;
-
 /**
- *
+ * AddToNum_Transaction.js
+ * 
+ * This class is a transaction that can be executed and undone. It
+ * can be stored in the jsTPS transaction stack and must be constructed
+ * with all the data necessary to perform both do and undo.
+ * 
  * @author Avik Kadakia
+ * @version 1.0
  */
-class AndMask_Transaction extends jsTPS_Transaction {
+class AddToNum_Transaction extends jsTPS_Transaction {
     // THIS IS THE OBJECT IT WILL MANIPULATE
     num = Num();
     
-    intNum;
-    
-    // AMOUNT TO MASK FOR NUM
-    mask;
+    // AMOUNT TO ADD/REMOVE FOR NUM
+    amountToAdd;
 
     /**
      * Constructor for this transaction, it initializes this
@@ -21,25 +23,28 @@ class AndMask_Transaction extends jsTPS_Transaction {
      * @param initNum
      * @param initAmountToAdd 
      */
-    constructor(initNum, initIntNum, initMask) {
+    constructor(initNum, initAmountToAdd) {
         // KEEP THESE FOR LATER
         this.num = initNum;
-        this.intNum = initIntNum;
-        this.mask = initMask;
+        this.amountToAdd = initAmountToAdd;
     }
 
     /**
      * This transaction simply adds the value to the num.
      */
     doTransaction() {
-        this.num.andMask(this.mask);
+        let oldNum = this.num.getNum();
+        let newNum = oldNum + this.amountToAdd;
+        this.num.setNum(newNum);
     }
 
     /**
      * As the reverse of do, this method substracts from num.
      */
     undoTransaction() {
-        this.num.setNum(this.intNum);
+        let oldNum = this.num.getNum();
+        let newNum = oldNum - this.amountToAdd;
+        this.num.setNum(newNum);
     }
 
     /**
@@ -48,6 +53,6 @@ class AndMask_Transaction extends jsTPS_Transaction {
      * @return A string storing a textual summary of this object.
      */
     toString() {
-        return "And Mask " + this.mask;
+        return "Add " + this.amountToAdd;
     }
 }

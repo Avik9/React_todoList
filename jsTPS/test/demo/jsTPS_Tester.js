@@ -1,6 +1,3 @@
-import jsTPS from jsTPS;
-import jsTPS_Transaction from jsTPS_Transaction;
-
 /**
  * This driver demonstrates simple usage of the jTPS API.
  * 
