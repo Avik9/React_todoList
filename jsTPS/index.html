@@ -18,6 +18,13 @@
     <!-- FOR TESTING OUR jsTPS PROGRAM -->
 
     <script src="./test/jsunit_test_beds/jsTPS_Unit_Tests.js"></script>
+
+    <script>
+        window.onload = function () {
+            unitTesting = new jsTPS_Unit_Tests();
+            unitTesting.run();
+        }
+    </script>
 </head>
 
 <body>
@@ -25,10 +32,10 @@
         <div id="page_title"><strong>Welcome to the jsTPS Tester Page</strong></div>
 
         <div id="top_half">
-            <p>blanktext</p>
+            <div id="input"></div>
         </div>
         <div id="bottom_half">
-            <p>blanktext</p>
+            <div id="output"></div>
         </div>
     </div>
 </body>

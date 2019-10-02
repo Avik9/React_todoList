@@ -90,11 +90,11 @@
     
     doTransaction() {
         if (this.hasTransactionToRedo()) {
-            performingDo = true;
-            transaction = this.transactions.get(mostRecentTransaction+1);
+            this.performingDo = true;
+            let transaction = this.transactions[this.mostRecentTransaction+1];
             transaction.doTransaction();
             this.mostRecentTransaction++;
-            performingDo = false;
+            this.performingDo = false;
         }
     }
 
@@ -104,11 +104,11 @@
      */
     undoTransaction() {
         if (this.hasTransactionToUndo()) {
-            performingUndo = true;
-            transaction = transactions.get(mostRecentTransaction);
+            this.performingUndo = true;
+            let transaction = this.transactions[this.mostRecentTransaction+1];
             transaction.undoTransaction();
             this.mostRecentTransaction--;
-            performingUndo = false;
+            this.performingUndo = false;
         }
     }
 
@@ -176,7 +176,7 @@
      * @return true if a redo operation is possible, false otherwise.
      */
     hasTransactionToRedo() {
-        return this.mostRecentTransaction < (this.transactions.getSize()-1);
+        return this.mostRecentTransaction < (this.getSize()-1);
     }
 
     /**
@@ -187,7 +187,7 @@
      * @return A textual summary of the TPS.
      */
     toString() {
-        let text = "--Number of Transactions: " + transactions.getSize() + "\n";
+        let text = "--Number of Transactions: " + this.getSize() + "\n";
         text += "--Current Index on Stack: " + mostRecentTransaction + "\n";
         text += "--Current Transaction Stack:\n";
         for (let i = 0; i <= mostRecentTransaction; i++) {

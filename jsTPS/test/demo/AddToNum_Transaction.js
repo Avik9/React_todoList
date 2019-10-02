@@ -8,9 +8,10 @@
  * @author Avik Kadakia
  * @version 1.0
  */
-class AddToNum_Transaction extends jsTPS_Transaction {
+class AddToNum_Transaction extends jsTPS_Transaction 
+{
     // THIS IS THE OBJECT IT WILL MANIPULATE
-    num = Num();
+    num = new Num();
     
     // AMOUNT TO ADD/REMOVE FOR NUM
     amountToAdd;
@@ -25,26 +26,27 @@ class AddToNum_Transaction extends jsTPS_Transaction {
      */
     constructor(initNum, initAmountToAdd) {
         // KEEP THESE FOR LATER
-        this.num = initNum;
-        this.amountToAdd = initAmountToAdd;
+        super();
+        var num = initNum;
+        var amountToAdd = initAmountToAdd;
     }
 
     /**
      * This transaction simply adds the value to the num.
      */
     doTransaction() {
-        let oldNum = this.num.getNum();
-        let newNum = oldNum + this.amountToAdd;
-        this.num.setNum(newNum);
+        let oldNum = num.getNum();
+        let newNum = oldNum + amountToAdd;
+        num.setNum(newNum);
     }
 
     /**
      * As the reverse of do, this method substracts from num.
      */
     undoTransaction() {
-        let oldNum = this.num.getNum();
-        let newNum = oldNum - this.amountToAdd;
-        this.num.setNum(newNum);
+        let oldNum = num.getNum();
+        let newNum = oldNum - amountToAdd;
+        num.setNum(newNum);
     }
 
     /**
@@ -53,6 +55,6 @@ class AddToNum_Transaction extends jsTPS_Transaction {
      * @return A string storing a textual summary of this object.
      */
     toString() {
-        return "Add " + this.amountToAdd;
+        return "Add " + amountToAdd;
     }
 }

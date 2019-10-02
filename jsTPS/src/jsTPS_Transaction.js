@@ -15,21 +15,19 @@
  */
 
  class jsTPS_Transaction {
-
-    /**
-     * This method is called by jsTPS when a transaction is executed.
-     */
-    doTransaction = function()
-    {
-
-    }
-
-    /**
-    * This method is called by jTPS when a transaction is undone.
+   /**
+    * This method is called by jsTPS when a transaction is executed.
     */
-    undoTransaction = function()
-    {
+   doTransaction = function()
+   {
+      window.alert('Inheritance did not work and you are printing from the "Interface"');
+   }
 
-    }
-
+   /**
+ * This method is called by jTPS when a transaction is undone.
+ */
+   undoTransaction = function()
+   {
+      window.alert('Inheritance did not work and you are printing from the "Interface"');
+   }
  }

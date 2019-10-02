@@ -14,3 +14,7 @@
     flex: 50%;
     padding: 10px;
 }
+
+#input, #output {
+    height: 350px;
+}

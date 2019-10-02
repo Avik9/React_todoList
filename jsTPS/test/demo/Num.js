@@ -10,7 +10,11 @@
 
  class Num
  {
-    num = 0;
+    num;
+
+    constructor(){
+        this.num = 0;
+    }
 
     /**
      * Mutator method for the num instance variable.
