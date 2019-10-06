@@ -13,16 +13,17 @@
     <script src="./test/demo/OrMask_Transaction.js"></script>
     <script src="./test/demo/AndMask_Transaction.js"></script>
     <script src="./test/demo/AddToNum_Transaction.js"></script>
-    <script src="./test/demo/jsTPS_Tester.js"></script>
 
     <!-- FOR TESTING OUR jsTPS PROGRAM -->
 
     <script src="./test/jsunit_test_beds/jsTPS_Unit_Tests.js"></script>
+    <script src="./test/demo/jsTPS_Tester.js"></script>
+
 
     <script>
         window.onload = function () {
             unitTesting = new jsTPS_Unit_Tests();
-            let tester = new jsTPS_Tester()
+            tester = new jsTPS_Tester()
             unitTesting.run();
         }
     </script>
@@ -38,7 +39,7 @@
             <div id="right_half">
                 <div id="display"></div>
                 <input id="output"></input>
-                <button id="input_button" onclick="tester.main()">Enter</button>
+                <button id="input_button">Enter</button>
             </div>
         </div>
     </div>

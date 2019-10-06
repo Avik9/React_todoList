@@ -14,6 +14,11 @@ class jsTPS_Tester {
     // THESE ARE TO HELP WITH I/O
     y = document.getElementById("input_button").addEventListener("click", jsTPS_Tester.prototype.main());
 
+    constructor()
+    {
+        
+    }
+
     /**
      * This runs our demo program. Note that it presents a 
      * menu, retrieves the input, and executes the selected
