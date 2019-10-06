@@ -16,6 +16,9 @@ export class ListItemCard extends Component {
                 <div className='list_item_card_completed'>
                     {this.props.listItem.completed}
                 </div>
+                <div className='list_item_card'>
+                    
+                </div>
             </div>
         )
     }
