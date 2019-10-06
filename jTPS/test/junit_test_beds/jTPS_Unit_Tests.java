@@ -40,7 +40,7 @@ public class jTPS_Unit_Tests {
         Assert.assertEquals(0, tps.getRedoSize());
         Assert.assertEquals(2, tps.getUndoSize());
         
-        // ADD 15 TRANSACTION
+        // ADD 20 TRANSACTION
         tps.addTransaction(new AddToNum_Transaction(num, 20));
         Assert.assertEquals(35, num.getNum());
         Assert.assertEquals(3, tps.getSize());

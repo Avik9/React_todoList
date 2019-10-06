@@ -10,12 +10,6 @@
  */
 class AddToNum_Transaction extends jsTPS_Transaction 
 {
-    // THIS IS THE OBJECT IT WILL MANIPULATE
-    num = new Num();
-    
-    // AMOUNT TO ADD/REMOVE FOR NUM
-    amountToAdd;
-
     /**
      * Constructor for this transaction, it initializes this
      * object with all the data needed to both do and undo
@@ -27,16 +21,22 @@ class AddToNum_Transaction extends jsTPS_Transaction
     constructor(initNum, initAmountToAdd) {
         // KEEP THESE FOR LATER
         super();
-        var num = initNum;
-        var amountToAdd = initAmountToAdd;
+        this.num = initNum;
+        this.amountToAdd = initAmountToAdd;
+
+        // let oldNum = this.num.getNum();
+        // let newNum = oldNum + this.amountToAdd;
+
+        // AddToNum_Transaction.doTransaction(); // With the method as static
+        // AddToNum_Transaction.prototype.doTransaction(); // Without the method as static
     }
 
     /**
      * This transaction simply adds the value to the num.
      */
     doTransaction() {
-        let oldNum = num.getNum();
-        let newNum = oldNum + amountToAdd;
+        let oldNum = this.num.getNum();
+        let newNum = oldNum + this.amountToAdd;
         num.setNum(newNum);
     }
 

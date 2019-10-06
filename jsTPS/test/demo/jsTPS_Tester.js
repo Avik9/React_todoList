@@ -12,8 +12,7 @@ class jsTPS_Tester {
     num = new Num();
     
     // THESE ARE TO HELP WITH I/O
-    input = new Scanner(System.in);
-    out = System.out;
+    y = document.getElementById("input_button").addEventListener("click", jsTPS_Tester.prototype.main());
 
     /**
      * This runs our demo program. Note that it presents a 
@@ -27,25 +26,25 @@ class jsTPS_Tester {
         let keepGoing = true;
         while (keepGoing) {
             // DISPLAY THE CURRENT TPS
-            out.println("CURRENT jsTPS:");
-            out.println(tps);
-            out.println();
+            document.getElementById("display").innerHTML += "CURRENT jsTPS";
+            document.getElementById("display").innerHTML += tps;
+            document.getElementById("display").innerHTML += "<br><br>"
             
             // DISPLAY NUM
-            out.println("num is " + num.getNum());
-            out.println();
+            document.getElementById("display").innerHTML += "num is " + num.getNum();
+            document.getElementById("display").innerHTML += "<br><br>";
             
             // DISPLAY THE MENU
-            out.println("ENTER A SELECTION");
-            out.println("1) Add a Transaction");
-            out.println("2) Undo a Transaction");
-            out.println("3) Redo a Transaction");
-            out.println("4) Clear All Transactions");
-            out.println("5) Reset Num and Transactions");
-            out.print("-");
+            document.getElementById("display").innerHTML += "ENTER A SELECTION<br>" + 
+                                                            "1) Add a Transaction<br>" + 
+                                                            "2) Undo a Transaction<br>" +
+                                                            "3) Redo a Transaction<br>" +
+                                                            "4) Clear All Transactions<br>" +
+                                                            "5) Reset Num and Transactions<br>" +
+                                                            "-<br><br>";
 
             // GET THE USER SELECTION
-            entry = input.nextLine();
+            entry = document.getElementById("output").textContent;
             
             // ADD AND EXECUTE A TRANSACTION
             if (entry.startsWith("1")) {
@@ -77,6 +76,6 @@ class jsTPS_Tester {
                 keepGoing = false;
             }
         }
-        System.out.println("GOODBYE");
+        System.document.getElementById("display").innerHTML += "GOODBYE");
     }
 }

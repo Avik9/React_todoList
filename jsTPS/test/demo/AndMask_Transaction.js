@@ -3,14 +3,6 @@
  * @author Avik Kadakia
  */
 class AndMask_Transaction extends jsTPS_Transaction {
-    // THIS IS THE OBJECT IT WILL MANIPULATE
-    num = Num();
-    
-    intNum;
-    
-    // AMOUNT TO MASK FOR NUM
-    mask;
-
     /**
      * Constructor for this transaction, it initializes this
      * object with all the data needed to both do and undo
@@ -21,6 +13,7 @@ class AndMask_Transaction extends jsTPS_Transaction {
      */
     constructor(initNum, initIntNum, initMask) {
         // KEEP THESE FOR LATER
+        super();
         this.num = initNum;
         this.intNum = initIntNum;
         this.mask = initMask;

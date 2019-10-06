@@ -22,6 +22,7 @@
     <script>
         window.onload = function () {
             unitTesting = new jsTPS_Unit_Tests();
+            let tester = new jsTPS_Tester()
             unitTesting.run();
         }
     </script>
@@ -29,13 +30,16 @@
 
 <body>
     <div id="page">
-        <div id="page_title"><strong>Welcome to the jsTPS Tester Page</strong></div>
-
-        <div id="top_half">
-            <div id="input"></div>
-        </div>
-        <div id="bottom_half">
-            <div id="output"></div>
+        <div id="page_title"><strong>jsTPS Tester Page</strong></div>
+        <div class="column">
+            <div id="left_half">
+                <div id="input"></div>
+            </div>
+            <div id="right_half">
+                <div id="display"></div>
+                <input id="output"></input>
+                <button id="input_button" onclick="tester.main()">Enter</button>
+            </div>
         </div>
     </div>
 </body>
