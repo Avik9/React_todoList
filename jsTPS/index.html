@@ -18,12 +18,13 @@
 
     <script src="./test/jsunit_test_beds/jsTPS_Unit_Tests.js"></script>
     <script src="./test/demo/jsTPS_Tester.js"></script>
+    <!-- <script> new jsTPS_Tester();</script> -->
 
 
     <script>
         window.onload = function () {
+            new jsTPS_Tester();
             unitTesting = new jsTPS_Unit_Tests();
-            tester = new jsTPS_Tester()
             unitTesting.run();
         }
     </script>
@@ -37,9 +38,9 @@
                 <div id="input"></div>
             </div>
             <div id="right_half">
-                <div id="display"></div>
                 <input id="output"></input>
                 <button id="input_button">Enter</button>
+                <div id="display"></div>
             </div>
         </div>
     </div>

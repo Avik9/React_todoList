@@ -15,10 +15,6 @@
     padding: 10px;
 }
 
-/* #output {
-    height: 350px;
-} */
-
 #right_half, #input {
     left: 710px;
     bottom: 399px;
@@ -32,4 +28,8 @@
     border-radius: 5px;
     margin: 10px;
     height: fit-content;
+    width: 675px;
+    padding: 10px;
+    left: -11px;
+    
 }

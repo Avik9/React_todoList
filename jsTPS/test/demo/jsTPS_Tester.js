@@ -5,18 +5,17 @@
  * @version 1.0
  */
 class jsTPS_Tester {
-    // HERE'S OUR TRANSACTION PROCESSING SYSTEM
-    tps = new jsTPS();
-    
-    // HERE'S THE DATA WE'RE MANIPULATING IN THIS DEMO
-    num = new Num();
-    
-    // THESE ARE TO HELP WITH I/O
-    y = document.getElementById("input_button").addEventListener("click", jsTPS_Tester.prototype.main());
-
     constructor()
-    {
-        
+    {    
+        // HERE'S OUR TRANSACTION PROCESSING SYSTEM
+        this.tps = new jsTPS();
+
+        // HERE'S THE DATA WE'RE MANIPULATING IN THIS DEMO
+        this.num = new Num();
+
+        // THESE ARE TO HELP WITH I/O
+        document.getElementById("input_button").addEventListener("click", jsTPS_Tester.prototype.main());
+        document.getElementById("display").innerHTML += "jsTPS_Tester:";
     }
 
     /**
@@ -31,12 +30,12 @@ class jsTPS_Tester {
         let keepGoing = true;
         while (keepGoing) {
             // DISPLAY THE CURRENT TPS
-            document.getElementById("display").innerHTML += "CURRENT jsTPS";
-            document.getElementById("display").innerHTML += tps;
+            document.getElementById("display").innerHTML += "CURRENT jsTPS: <br>";
+            document.getElementById("display").innerHTML += this.tps;
             document.getElementById("display").innerHTML += "<br><br>"
             
             // DISPLAY NUM
-            document.getElementById("display").innerHTML += "num is " + num.getNum();
+            document.getElementById("display").innerHTML += "num is " + this.num.getNum();
             document.getElementById("display").innerHTML += "<br><br>";
             
             // DISPLAY THE MENU
@@ -81,6 +80,6 @@ class jsTPS_Tester {
                 keepGoing = false;
             }
         }
-        System.document.getElementById("display").innerHTML += "GOODBYE");
+        System.document.getElementById("display").innerHTML += "GOODBYE";
     }
 }
