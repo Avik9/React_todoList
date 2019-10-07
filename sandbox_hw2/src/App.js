@@ -22,6 +22,16 @@ class App extends Component {
     this.setState({currentList: null});
   }
 
+  // goList = () => {
+  //   this.setState({currentScreen: AppScreen.LIST_SCREEN});
+  //   this.setState({currentList: null});
+  // }
+
+  // goHome = () => {
+  //   this.setState({currentScreen: AppScreen.HOME_SCREEN});
+  //   this.setState({currentList: null});
+  // }
+
   loadList = (todoListToLoad) => {
     this.setState({currentScreen: AppScreen.LIST_SCREEN});
     this.setState({currentList: todoListToLoad});
