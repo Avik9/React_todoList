@@ -134,6 +134,34 @@
   .list_item_card_not_completed {
     color: red;
   }
+
+  .list_item_move_up, .list_item_move_down,.list_item_card_delete, .list_item_move_up_first, .list_item_move_down_last {
+    position: absolute;
+    font-size: 30pt;
+    border-radius: 10%;
+    width: 4%;
+    height: 90%;
+}
+
+.list_item_move_up, .list_item_move_down,.list_item_card_delete {
+    background-color: var(--swatch-accent);
+}
+
+.list_item_move_up_first, .list_item_move_down_last {
+    background-color: #d3d3d3;
+}
+
+.list_item_move_up, .list_item_move_up_first{
+    left: 87.8%;
+}
+
+.list_item_move_down, .list_item_move_down_last {
+    left: 91.9%;
+}
+
+.list_item_card_delete {
+    left: 96%;
+}
   .list_item_card_toolbar {}
   .list_item_card_button {
     background-color: var(--swatch-accent);
