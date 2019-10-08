@@ -31,7 +31,7 @@ class jsTPS_Tester {
         while (keepGoing) {
             // DISPLAY THE CURRENT TPS
             document.getElementById("display").innerHTML += "CURRENT jsTPS: <br>";
-            document.getElementById("display").innerHTML += this.tps;
+            // document.getElementById("display").innerHTML += this.tps;
             document.getElementById("display").innerHTML += "<br><br>"
             
             // DISPLAY NUM

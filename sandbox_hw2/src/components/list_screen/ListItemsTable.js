@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import ListItemCard from './ListItemCard'
 
+var addCard = require('../../images/Add.png');
+
 export class ListItemsTable extends Component {
     render() {
         return (
@@ -10,16 +12,18 @@ export class ListItemsTable extends Component {
                     <div className="list_item_due_date_header">Due Date</div>
                     <div className="list_item_status_header">Status</div>
                 </div>
-                
+
                 {
                     this.props.todoList.items.map((todoItem) => (
                         <ListItemCard
                             key={todoItem.key}
-                            listItem={todoItem} />
+                            listItem={todoItem}
+                            onClick="" />
                     ))
-                    // <ListItemCard id={"list_item_add_card"}>&#x2b;</ListItemCard>
                 }
-                
+                <div className='list_item_add_card'>
+                    <img src={addCard} className="list_item_add_card" />
+                </div>
             </div>
         )
     }

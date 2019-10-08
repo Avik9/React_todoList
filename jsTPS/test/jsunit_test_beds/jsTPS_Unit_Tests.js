@@ -13,10 +13,10 @@ class jsTPS_Unit_Tests {
     }
 
     run() {
-        document.getElementById("input").innerHTML = "jsTPS Unit Testing results";
+        document.getElementById("input").innerHTML = "jsTPS Unit Testing results<br><br>";
         this.testAdd();
         this.testAndMask();
-        // this.testOrMask();
+        this.testOrMask();
         // this.testUndo();
         // this.testRedo();
         // this.testClear();
@@ -32,109 +32,85 @@ class jsTPS_Unit_Tests {
 
 
         // CHECK DEFAULT NUM VALUE == 0
-        document.getElementById("input").innerHTML += "Creating a new Num object ...  <br><br>Checking if the num object is equal to 0: ";
+        document.getElementById("input").innerHTML += "Creating a new Num object ...  <br><br>&emsp; &emsp;Checking if the num object is equal to 0: ";
 
         this.checkEquality(num.getNum(), 0);
 
 
         // CHECK NUM == 5
-        document.getElementById("input").innerHTML += "Changing the value of num to 5 ... <br><br>Checking if the num object is equal to 5: ";
+        document.getElementById("input").innerHTML += "Changing the value of num to 5 ... <br><br>&emsp; &emsp;Checking if the num object is equal to 5: ";
 
         tps.addTransaction(new AddToNum_Transaction(num, 5));
-
-        // console.log("Num Value" + num.getNum());
 
         this.checkEquality(num.getNum(), 5);
 
 
         // CHECKING TPS SIZE == 1
-        document.getElementById("input").innerHTML += "Checking if the tps' size is 1: ";
-
-        // console.log("TPS Size: " + tps.getSize());
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 1: ";
 
         this.checkEquality(tps.getSize(), 1);
 
 
         // CHECK REDO SIZE == 0
-        document.getElementById("input").innerHTML += "Checking if the tps.getRedoSize() is 0: ";
-
-        // console.log("tps.getRedoSize(): " + tps.getRedoSize());
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps.getRedoSize() is 0: ";
 
         this.checkEquality(tps.getRedoSize(), 0);
 
 
         // CHECK UNDO SIZE == 0
-        document.getElementById("input").innerHTML += "Checking if the tps.getUndoSize() is 1: ";
-
-        // console.log("tps.getUndoSize(): " + tps.getUndoSize());
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps.getUndoSize() is 1: ";
 
         this.checkEquality(tps.getUndoSize(), 1);
 
 
         // ADD 10 TRANSACTION
-        document.getElementById("input").innerHTML += "Adding 10 to transactions ... <br><br>Checking if the num object is equal to 15: ";
+        document.getElementById("input").innerHTML += "Adding 10 to transactions ... <br><br>&emsp; &emsp;Checking if the num object is equal to 15: ";
 
         tps.addTransaction(new AddToNum_Transaction(num, 10));
-
-        // console.log("Num Value" + num.getNum());
 
         this.checkEquality(num.getNum(), 15);
 
 
         // CHECKING TPS SIZE == 2
-        document.getElementById("input").innerHTML += "Checking if the tps' size is 2: ";
-
-        // console.log("TPS Size: " + tps.getSize());
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 2: ";
 
         this.checkEquality(tps.getSize(), 2);
 
 
         // CHECK REDO SIZE == 0
-        document.getElementById("input").innerHTML += "Checking if the tps.getRedoSize() is 0: ";
-
-        // console.log("tps.getRedoSize(): " + tps.getRedoSize());
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps.getRedoSize() is 0: ";
 
         this.checkEquality(tps.getRedoSize(), 0);
 
 
         // CHECK UNDO SIZE == 2
-        document.getElementById("input").innerHTML += "Checking if the tps.getUndoSize() is 2: ";
-
-        // console.log("tps.getUndoSize(): " + tps.getUndoSize());
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps.getUndoSize() is 2: ";
 
         this.checkEquality(tps.getUndoSize(), 2);
 
 
         // ADD 20 TRANSACTION
-        document.getElementById("input").innerHTML += "Adding 20 to num ... <br><br>Checking if the num object is equal to 35: ";
+        document.getElementById("input").innerHTML += "Adding 20 to num ... <br><br>&emsp; &emsp;Checking if the num object is equal to 35: ";
 
         tps.addTransaction(new AddToNum_Transaction(num, 20));
-
-        // console.log("Num Value" + num.getNum());
 
         this.checkEquality(num.getNum(), 35);
 
 
         // CHECKING TPS SIZE == 3
-        document.getElementById("input").innerHTML += "Checking if the tps' size is 3: ";
-
-        // console.log("TPS Size: " + tps.getSize());
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 3: ";
 
         this.checkEquality(tps.getSize(), 3);
 
 
         // CHECK REDO SIZE == 0
-        document.getElementById("input").innerHTML += "Checking if the tps.getRedoSize() is 0: ";
-
-        // console.log("tps.getRedoSize(): " + tps.getRedoSize());
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps.getRedoSize() is 0: ";
 
         this.checkEquality(tps.getRedoSize(), 0);
 
 
         // CHECK UNDO SIZE == 3
-        document.getElementById("input").innerHTML += "Checking if the tps.getUndoSize() is 3: ";
-
-        // console.log("tps.getUndoSize(): " + tps.getUndoSize());
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps.getUndoSize() is 3: ";
 
         this.checkEquality(tps.getUndoSize(), 3);
     }
@@ -149,7 +125,7 @@ class jsTPS_Unit_Tests {
 
 
         // CHECK DEFAULT NUM VALUE == 0
-        document.getElementById("input").innerHTML += "Creating a new num ...  <br><br>Checking if the num object is equal to 0: ";
+        document.getElementById("input").innerHTML += "Creating a new num ...  <br><br>&emsp; &emsp;Checking if the num object is equal to 0: ";
 
         this.checkEquality(num.getNum(), 0);
 
@@ -163,17 +139,15 @@ class jsTPS_Unit_Tests {
         // AND MASKING 12 WITH 4
         document.getElementById("input").innerHTML += "Adding Mask Taransaction between 12 and 4 ...<br><br>";
 
-        tps.addTransaction(new AndMask_Transaction(num, num.getNum(), 4));
+        // tps.addTransaction(new AndMask_Transaction(num, num.getNum(), 4));
 
-        document.getElementById("input").innerHTML += "Checking if the num is now equal to 4: ";
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the num is now equal to 4: ";
 
         this.checkEquality(num.getNum(), 4);
 
 
         // CHECKING TPS SIZE == 3
-        document.getElementById("input").innerHTML += "Checking if the tps' size is 3: ";
-
-        // console.log("TPS Size: " + tps.getSize());
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 3: ";
 
         this.checkEquality(tps.getSize(), 3);
 
@@ -181,40 +155,101 @@ class jsTPS_Unit_Tests {
         // UNDO TRANSACTION
         document.getElementById("input").innerHTML += "Undoing the tps ...<br><br>";
 
-        // console.log("TPS Size: " + tps.getSize());
-
         // tps.undoTransaction();
 
         //CHECK SIZE == 3
-        document.getElementById("input").innerHTML += "Checking if the tps' size is 3: ";
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 3: ";
 
         this.checkEquality(tps.getSize(), 3);
 
         // CHECK NUM == 12
-        document.getElementById("input").innerHTML += "Checking if the num is now equal to 12: ";
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the num is now equal to 12: ";
 
         this.checkEquality(num.getNum(), 12);
 
         //CHECK SIZE == 2
-        document.getElementById("input").innerHTML += "Checking if the tps' size is 2: ";
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 2: ";
 
         this.checkEquality(tps.getSize(), 2);
 
 
         //CHECK tps.getRedoSize() == 1
-        document.getElementById("input").innerHTML += "Checking if tps.getRedoSize() is 1: ";
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.getRedoSize() is 1: ";
 
         this.checkEquality(tps.getRedoSize(), 1);
 
 
         //CHECK tps.getUndoSize() == 1
-        document.getElementById("input").innerHTML += "Checking if tps.getUndoSize() is 1: ";
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.getUndoSize() is 1: ";
 
         this.checkEquality(tps.getUndoSize(), 1);
     }
 
     testOrMask() {
+        // WE'LL JUST USE A SIMPLE NUM FOR TESTING
+        let tps = new jsTPS();
+        let num = new Num();
 
+
+        // CHECK DEFAULT NUM VALUE == 0
+        document.getElementById("input").innerHTML += "Creating a new num ...  <br><br>&emsp; &emsp;Checking if the num object is equal to 0: ";
+
+        this.checkEquality(num.getNum(), 0);
+
+
+        // ADD 12 TRANSACTION
+        document.getElementById("input").innerHTML += "Adding 12 to transactions ...<br><br>";
+
+        tps.addTransaction(new AddToNum_Transaction(num, 12));
+
+
+        // AND MASKING 12 WITH 4
+        document.getElementById("input").innerHTML += "Adding Mask Taransaction between 12 and 4 ...<br><br>";
+
+        tps.addTransaction(new OrMask_Transaction(num, num.getNum(), 4));
+
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the num is now equal to 4: ";
+
+        this.checkEquality(num.getNum(), 4);
+
+
+        // CHECKING TPS SIZE == 3
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 3: ";
+
+        this.checkEquality(tps.getSize(), 3);
+
+
+        // UNDO TRANSACTION
+        document.getElementById("input").innerHTML += "Undoing the tps ...<br><br>";
+
+        // tps.undoTransaction();
+
+        //CHECK SIZE == 3
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 3: ";
+
+        this.checkEquality(tps.getSize(), 3);
+
+        // CHECK NUM == 12
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the num is now equal to 12: ";
+
+        this.checkEquality(num.getNum(), 12);
+
+        //CHECK SIZE == 2
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 2: ";
+
+        this.checkEquality(tps.getSize(), 2);
+
+
+        //CHECK tps.getRedoSize() == 1
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.getRedoSize() is 1: ";
+
+        this.checkEquality(tps.getRedoSize(), 1);
+
+
+        //CHECK tps.getUndoSize() == 1
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.getUndoSize() is 1: ";
+
+        this.checkEquality(tps.getUndoSize(), 1);
     }
 
     /**

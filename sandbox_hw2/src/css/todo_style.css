@@ -97,9 +97,8 @@
     background-color: var(--swatch-complement);
   }
   .list_item_add_card {
-    font-weight: bolder;
-    text-align: center;
-    font-size: 48pt;
+    font-weight: bold;
+    font-size: 24pt;
   }
   .list_item_add_card:hover {
     color: var(--swatch-bright-accent);

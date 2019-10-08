@@ -4,16 +4,18 @@
  */
 
  class OrMask_Transaction extends jsTPS_Transaction{
-
-    num = new Num();
-
-    intNum;
-
-    mask;
-
+    /**
+     * Constructor for this transaction, it initializes this
+     * object with all the data needed to both do and undo
+     * the transaction.
+     * 
+     * @param initNum
+     * @param initAmountToAdd 
+     */
     constructor(initNum, initIntNum, initMask)
     {
         // KEEP THESE FOR LATER
+        super();
         this.num = initNum;
         this.intNum = initIntNum;
         this.mask = initMask;

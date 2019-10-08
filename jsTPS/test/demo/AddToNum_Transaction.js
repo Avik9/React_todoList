@@ -29,6 +29,8 @@ class AddToNum_Transaction extends jsTPS_Transaction
 
         // AddToNum_Transaction.doTransaction(); // With the method as static
         // AddToNum_Transaction.prototype.doTransaction(); // Without the method as static
+
+        // this.bind(this, this.doTransaction());
     }
 
     /**
