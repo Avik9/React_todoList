@@ -18,7 +18,7 @@ export class ListItemsTable extends Component {
                         <ListItemCard
                             key={todoItem.key}
                             listItem={todoItem}
-                            onClick="" />
+                            />
                     ))
                 }
                 <div className='list_item_add_card'>

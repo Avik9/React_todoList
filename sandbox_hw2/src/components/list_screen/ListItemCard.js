@@ -7,7 +7,7 @@ var deleteCard = require('../../images/Delete.png');
 export class ListItemCard extends Component {
     render() {
         return (
-            <div className='list_item_card'>
+            <div className='list_item_card' onClick = ''>
                 <div className='list_item_card_description'>
                     {this.props.listItem.description}
                 </div>
@@ -32,7 +32,7 @@ export class ListItemCard extends Component {
                 <div className='list_item_card_delete'>
                     {<img src={deleteCard}></img>}
                 </div>
-            </div>
+            </div> 
         )
     }
 }

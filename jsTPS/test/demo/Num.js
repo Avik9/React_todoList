@@ -10,8 +10,6 @@
 
  class Num
  {
-    num;
-
     constructor(){
         this.num = 0;
     }

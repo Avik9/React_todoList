@@ -3,6 +3,7 @@ import ListHeading from './ListHeading'
 import ListItemsTable from './ListItemsTable'
 import ListTrash from './ListTrash'
 import PropTypes from 'prop-types';
+import { list } from 'postcss';
 
 export class ListScreen extends Component {
     getListName() {
@@ -19,11 +20,12 @@ export class ListScreen extends Component {
             return this.props.todoList.owner;
         }
     }
+
     render() {
         return (
             <div id="todo_list">
                 <ListHeading goHome={this.props.goHome} />
-                <ListTrash />
+                <ListTrash listName = {this.getListName()} deleteList={this.props.deleteList}/>
                 <div id="list_details_container">
                     <div id="list_details_name_container" className="text_toolbar">
                         <span id="list_name_prompt">Name:</span>

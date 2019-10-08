@@ -18,27 +18,40 @@ class App extends Component {
   }
 
   goHome = () => {
-    this.setState({currentScreen: AppScreen.HOME_SCREEN});
-    this.setState({currentList: null});
+    this.setState({ currentScreen: AppScreen.HOME_SCREEN });
+    this.setState({ currentList: null });
+  }
+
+  deleteList = (listName) => {
+    this.state.todoLists.forEach((listItem, indexOfList) => {
+      if (listItem.name === listName) {
+        if (indexOfList >= 0) {
+          this.state.todoLists.splice(indexOfList, 1);
+          this.goHome();
+        }
+      }
+    });
+    // window.alert("Clicked on deleteList for: " + listName);
   }
 
   loadList = (todoListToLoad) => {
-    this.setState({currentScreen: AppScreen.LIST_SCREEN});
-    this.setState({currentList: todoListToLoad});
+    this.setState({ currentScreen: AppScreen.LIST_SCREEN });
+    this.setState({ currentList: todoListToLoad });
     console.log("currentList: " + this.state.currentList);
     console.log("currentScreen: " + this.state.currentScreen);
   }
 
   render() {
-    switch(this.state.currentScreen) {
+    switch (this.state.currentScreen) {
       case AppScreen.HOME_SCREEN:
-        return <HomeScreen 
-        loadList={this.loadList.bind(this)} 
-        todoLists={this.state.todoLists} />;
-      case AppScreen.LIST_SCREEN:            
+        return <HomeScreen
+          loadList={this.loadList.bind(this)}
+          todoLists={this.state.todoLists} />;
+      case AppScreen.LIST_SCREEN:
         return <ListScreen
           goHome={this.goHome.bind(this)}
-          todoList={this.state.currentList} />;
+          todoList={this.state.currentList}
+          deleteList={this.deleteList} />;
       case AppScreen.ITEM_SCREEN:
         return <ItemScreen />;
       default:
