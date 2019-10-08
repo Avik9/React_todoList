@@ -31,7 +31,6 @@ class App extends Component {
         }
       }
     });
-    // window.alert("Clicked on deleteList for: " + listName);
   }
 
   loadList = (todoListToLoad) => {

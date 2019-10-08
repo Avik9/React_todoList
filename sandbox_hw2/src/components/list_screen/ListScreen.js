@@ -21,6 +21,32 @@ export class ListScreen extends Component {
         }
     }
 
+    setListName = () =>
+    {
+        let newName = document.getElementById('list_name_textfield').value;
+        if (newName === "")
+        {
+            newName = "No Name";
+        }
+
+        this.props.todoList.name = newName;
+
+        return this.props.todoList.name;
+    }
+
+    setListOwner = () =>
+    {
+        let newOwner = document.getElementById('list_owner_textfield').value;
+        if (newOwner === "")
+        {
+            newOwner = "No Owner";
+        }
+
+        this.props.todoList.owner = newOwner;
+
+        return this.props.todoList.owner;
+    }
+
     render() {
         return (
             <div id="todo_list">
@@ -30,16 +56,20 @@ export class ListScreen extends Component {
                     <div id="list_details_name_container" className="text_toolbar">
                         <span id="list_name_prompt">Name:</span>
                         <input 
-                            value={this.getListName()} 
+                            defaultValue={this.getListName()} 
                             type="text" 
-                            id="list_name_textfield" />
+                            id="list_name_textfield"
+                            onChange={() => this.setListName()} />
+                            
                     </div>
                     <div id="list_details_owner_container" className="text_toolbar">
                         <span id="list_owner_prompt">Owner:</span>
                         <input 
-                            value={this.getListOwner()}
+                            defaultValue={this.getListOwner()}
                             type="text" 
-                            id="list_owner_textfield" />
+                            id="list_owner_textfield"
+                            onChange={() => this.setListOwner()} 
+                            />
                     </div>
                 </div>
                 <ListItemsTable todoList={this.props.todoList} />

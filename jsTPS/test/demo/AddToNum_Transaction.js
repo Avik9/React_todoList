@@ -23,14 +23,6 @@ class AddToNum_Transaction extends jsTPS_Transaction
         super();
         this.num = initNum;
         this.amountToAdd = initAmountToAdd;
-
-        // let oldNum = this.num.getNum();
-        // let newNum = oldNum + this.amountToAdd;
-
-        // AddToNum_Transaction.doTransaction(); // With the method as static
-        // AddToNum_Transaction.prototype.doTransaction(); // Without the method as static
-
-        // this.bind(this, this.doTransaction());
     }
 
     /**
