@@ -22,6 +22,10 @@ class App extends Component {
     this.setState({ currentList: null });
   }
 
+  goItem = () => {
+    this.setState({ currentScreen: AppScreen.ITEM_SCREEN });
+  }
+
   deleteList = (listName) => {
     this.state.todoLists.forEach((listItem, indexOfList) => {
       if (listItem.name === listName) {
@@ -51,7 +55,8 @@ class App extends Component {
           goHome={this.goHome.bind(this)}
           todoList={this.state.currentList}
           deleteList={this.deleteList}
-          loadList={this.loadList} />;
+          loadList={this.loadList}
+          goItem={this.goItem} />;
       case AppScreen.ITEM_SCREEN:
         return <ItemScreen />;
       default:

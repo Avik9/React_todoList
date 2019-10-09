@@ -157,7 +157,8 @@ export class ListItemsTable extends Component {
                             key={todoItem.key}
                             listItem={todoItem}
                             todoList={this.props.todoList}
-                            loadList={this.props.loadList} />
+                            loadList={this.props.loadList}
+                            goItem={this.props.goItem}  />
                     ))
                 }
                 <div className='list_item_add_card'>
