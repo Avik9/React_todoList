@@ -43,8 +43,8 @@ export class ItemScreen extends Component {
         let dueDate = document.getElementById('due_date_dropdown').value;
         this.props.currentItem.due_date = dueDate;
 
-        let completed = document.getElementById('completed_checkbox').value;
-        this.props.currentItem.completed = completed;
+        let completed = document.getElementById('completed_checkbox').checked;
+        this.props.currentItem.checked = completed;
 
         this.props.loadList(this.props.todoList);
     }
@@ -87,7 +87,7 @@ export class ItemScreen extends Component {
             description: document.getElementById('item_description_textfield').value,
             assigned_to: document.getElementById('assigned_to_textfield').value,
             due_date: document.getElementById('due_date_dropdown').value,
-            completed: document.getElementById('completed_checkbox').value
+            completed: document.getElementById('completed_checkbox').checked
         }
 
         this.props.todoList.items.push(newItem);
