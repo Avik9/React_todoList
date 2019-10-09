@@ -15,8 +15,8 @@ class jsTPS_Unit_Tests {
     run() {
         document.getElementById("input").innerHTML = "jsTPS Unit Testing results<br><br>";
         this.testAdd();
-        this.testAndMask();
-        this.testOrMask();
+        // this.testAndMask();
+        // this.testOrMask();
         // this.testUndo();
         // this.testRedo();
         // this.testClear();
@@ -134,6 +134,7 @@ class jsTPS_Unit_Tests {
         document.getElementById("input").innerHTML += "Adding 12 to transactions ...<br><br>";
 
         tps.addTransaction(new AddToNum_Transaction(num, 12));
+
 
 
         // AND MASKING 12 WITH 4

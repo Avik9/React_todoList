@@ -37,6 +37,19 @@ class App extends Component {
     });
   }
 
+  createNewList = () => {
+    let position = this.state.todoLists.length;
+    let newList = {
+      "key": position,
+      "name": "Unknown",
+      "owner": "Unknown",
+      "items": []
+    }
+
+    this.state.todoLists.push(newList);
+    this.loadList(newList);
+  }
+
   loadList = (todoListToLoad) => {
     this.setState({ currentScreen: AppScreen.LIST_SCREEN });
     this.setState({ currentList: todoListToLoad });
@@ -49,7 +62,8 @@ class App extends Component {
       case AppScreen.HOME_SCREEN:
         return <HomeScreen
           loadList={this.loadList.bind(this)}
-          todoLists={this.state.todoLists} />;
+          todoLists={this.state.todoLists}
+          createNewList={this.createNewList} />;
       case AppScreen.LIST_SCREEN:
         return <ListScreen
           goHome={this.goHome.bind(this)}

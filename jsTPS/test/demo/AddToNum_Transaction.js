@@ -29,6 +29,7 @@ class AddToNum_Transaction extends jsTPS_Transaction
      * This transaction simply adds the value to the num.
      */
     doTransaction() {
+        console.log("here");
         let oldNum = this.num.getNum();
         let newNum = oldNum + this.amountToAdd;
         num.setNum(newNum);

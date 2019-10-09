@@ -17,7 +17,7 @@ export class ListItemCard extends Component {
         return counter;
     }
 
-    moveItemUp = () =>
+    moveItemUp = (e) =>
     {
         let indexOfItem = this.props.todoList.items.indexOf(this.props.listItem);
 
@@ -27,9 +27,10 @@ export class ListItemCard extends Component {
             this.props.todoList.items[indexOfItem] = temp;
         }
         this.props.loadList(this.props.todoList);
+        e.stopPropagation();
     }
 
-    moveItemDown = () =>
+    moveItemDown = (e) =>
     {
         let indexOfItem = this.props.todoList.items.indexOf(this.props.listItem);
 
@@ -39,14 +40,16 @@ export class ListItemCard extends Component {
             this.props.todoList.items[indexOfItem] = temp;
         }
         this.props.loadList(this.props.todoList);
+        e.stopPropagation();
     }
 
-    deleteItem = () =>
+    deleteItem = (e) =>
     {
         let indexOfItem = this.props.todoList.items.indexOf(this.props.listItem);
         this.props.todoList.items.splice(indexOfItem, 1);
 
         this.props.loadList(this.props.todoList);
+        e.stopPropagation();
     }
 
     fixList()
@@ -79,15 +82,15 @@ export class ListItemCard extends Component {
                     {this.props.listItem.completed === false && <span>Pending</span>}
                 </div>
                 <div className='list_item_move_up'
-                        onClick={this.moveItemUp}>
+                        onClick={(e) => this.moveItemUp(e)}>
                     {<img src={moveUp}></img>}
                 </div>
                 <div className='list_item_move_down'
-                        onClick={this.moveItemDown}>
+                        onClick={(e) => this.moveItemDown(e)}>
                     {<img src={moveDown}></img>}      
                 </div>
                 <div className='list_item_card_delete'
-                        onClick={this.deleteItem}>
+                        onClick={(e) => this.deleteItem(e)}>
                     {<img src={deleteCard}></img>}
                 </div>
                 <div>
