@@ -60,13 +60,8 @@ export class ListItemsTable extends Component {
      */
     sortTasks = async(sortingCriteria) => {
         await this.setState({currentItemSortCriteria: sortingCriteria});
-       // console.log("here");
         this.props.todoList.items.sort(this.compare);
         this.setState({currentItemSortCriteria: sortingCriteria});
-        // this.props.loadList(this.todoList);
-        // window.alert("Sort tasks: " + this.state.currentItemSortCriteria);
-        // window.alert("Sorting criteria: " + sortingCriteria);
-       
     }
 
     /**
@@ -86,15 +81,6 @@ export class ListItemsTable extends Component {
      * @param {TodoListItem} item2 Second item to compare.
      */
     compare = (item1, item2) => {
-        console.log("her2");
-        // window.alert("Y: " + this.y);
-        // let x = this.state.currentItemSortCriteria;
-        // this.y = "-1000000"
-        // window.alert(x);
-        
-
-        // console.log("X: " + x);
-        // console.log("Y: " + this.y);
 
         // IF IT'S A DECREASING CRITERIA SWAP THE ITEMS
         if (this.isCurrentItemSortCriteria('SORT_BY_TASK_DECREASING')
@@ -126,19 +112,14 @@ export class ListItemsTable extends Component {
         }
 
         // SORT BY COMPLETED
-        else if(this.isCurrentItemSortCriteria('SORT_BY_STATUS_INCREASING')
-        || this.isCurrentItemSortCriteria('SORT_BY_STATUS_DECREASING')) {
-            // this.y = "Hello";
+        else 
+        {
             if (item1.completed < item2.completed)
                 return -1;
             else if (item1.completed > item2.completed)
                 return 1;
             else
                 return 0;
-        }
-
-        else{
-            window.alert("What the fuck broooooooooooo");
         }
     }
 
@@ -158,10 +139,10 @@ export class ListItemsTable extends Component {
                             listItem={todoItem}
                             todoList={this.props.todoList}
                             loadList={this.props.loadList}
-                            goItem={this.props.goItem}  />
+                            editListItemCard={this.props.editListItemCard}  />
                     ))
                 }
-                <div className='list_item_add_card'>
+                <div className='list_item_add_card' onClick={this.props.createListItemCard}>
                     <img src={addCard} className="list_item_add_card" />
                 </div>
             </div>

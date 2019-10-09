@@ -40,7 +40,7 @@ body {
   }
   
   /* HOME SCREEN CLASSES */
-  .home_list_link {}
+  .home_list_link {margin-top: 10px;}
   
   /* LIST SCREEN CONTROLS */
   #list_heading {}

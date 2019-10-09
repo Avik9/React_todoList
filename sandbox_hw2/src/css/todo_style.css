@@ -55,11 +55,11 @@
   }
   
   /* HOME SCREEN CLASSES */
-  .home_list_link {
+  #home_list_link {
     color: var(--swatch-boundary);
     text-decoration: none;
   }
-  .home_list_link:hover {
+  #home_list_link:hover {
     color: var(--swatch-accent);
   }
   

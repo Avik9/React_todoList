@@ -14,16 +14,24 @@ class App extends Component {
   state = {
     currentScreen: AppScreen.HOME_SCREEN,
     todoLists: testTodoListData.todoLists,
-    currentList: null
+    currentList: null,
+    currentItem: null,
+    createItem: false
+  }
+
+  createListItemCard = () => {
+    this.setState({ currentScreen: AppScreen.ITEM_SCREEN,
+      currentItem: null });
+  }
+
+  editListItemCard = (itemToEdit) => {
+    this.setState({ currentScreen: AppScreen.ITEM_SCREEN,
+                    currentItem: itemToEdit });
   }
 
   goHome = () => {
     this.setState({ currentScreen: AppScreen.HOME_SCREEN });
     this.setState({ currentList: null });
-  }
-
-  goItem = () => {
-    this.setState({ currentScreen: AppScreen.ITEM_SCREEN });
   }
 
   deleteList = (listName) => {
@@ -51,8 +59,9 @@ class App extends Component {
   }
 
   loadList = (todoListToLoad) => {
-    this.setState({ currentScreen: AppScreen.LIST_SCREEN });
-    this.setState({ currentList: todoListToLoad });
+    this.setState({ currentScreen: AppScreen.LIST_SCREEN,
+                    currentList: todoListToLoad,
+                    currentItem: null  });
     console.log("currentList: " + this.state.currentList);
     console.log("currentScreen: " + this.state.currentScreen);
   }
@@ -70,9 +79,14 @@ class App extends Component {
           todoList={this.state.currentList}
           deleteList={this.deleteList}
           loadList={this.loadList}
-          goItem={this.goItem} />;
+          editListItemCard={this.editListItemCard}
+          createListItemCard={this.createListItemCard} />;
       case AppScreen.ITEM_SCREEN:
-        return <ItemScreen />;
+        return <ItemScreen 
+          currentItem={this.state.currentItem}
+          createItem={this.state.createItem}
+          loadList={this.loadList}
+          todoList={this.state.currentList} />;
       default:
         return <div>ERROR</div>;
     }

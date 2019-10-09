@@ -52,20 +52,9 @@ export class ListItemCard extends Component {
         e.stopPropagation();
     }
 
-    fixList()
-    {
-        if(this.props.todoList.items.indexOf(this.props.listItem) === 0)
-        {
-            window.alert(this.props.listItem.description);
-            // this.props.listItem.Componen
-            let firstElement = document.getElementById('list_item_move_up');
-            firstElement.id = 'list_item_move_up_first';
-        }
-    }
-
     render() {
         return (
-            <div className='list_item_card' onClick={this.props.goItem}>
+            <div className='list_item_card' onClick={() => this.props.editListItemCard(this.props.listItem)}>
                 <div className='list_item_card_description'>
                     {this.props.listItem.description}
                 </div>
@@ -81,11 +70,13 @@ export class ListItemCard extends Component {
                 <div className='list_item_card_not_completed'>
                     {this.props.listItem.completed === false && <span>Pending</span>}
                 </div>
-                <div className={this.props.todoList.items.indexOf(this.props.listItem) === 0 ? 'list_item_move_up_first' : 'list_item_move_up'}
+                <div className=
+                {this.props.todoList.items.indexOf(this.props.listItem) === 0 ? 'list_item_move_up_first' : 'list_item_move_up'}
                         onClick={(e) => this.moveItemUp(e)}>
                     {<img src={moveUp}></img>}
                 </div>
-                <div className={(this.props.todoList.items.indexOf(this.props.listItem)) === (this.getLength() - 1) ? 'list_item_move_down_last' : 'list_item_move_down'}
+                <div className=
+                {(this.props.todoList.items.indexOf(this.props.listItem)) === (this.getLength() - 1) ? 'list_item_move_down_last' : 'list_item_move_down'}
                         onClick={(e) => this.moveItemDown(e)}>
                     {<img src={moveDown}></img>}      
                 </div>
@@ -93,10 +84,6 @@ export class ListItemCard extends Component {
                         onClick={(e) => this.deleteItem(e)}>
                     {<img src={deleteCard}></img>}
                 </div>
-                <div>
-                    {/* {this.fixList()} */}
-                </div>
-
             </div>
         )
     }
