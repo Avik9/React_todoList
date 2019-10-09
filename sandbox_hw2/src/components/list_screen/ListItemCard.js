@@ -81,11 +81,11 @@ export class ListItemCard extends Component {
                 <div className='list_item_card_not_completed'>
                     {this.props.listItem.completed === false && <span>Pending</span>}
                 </div>
-                <div className='list_item_move_up'
+                <div className={this.props.todoList.items.indexOf(this.props.listItem) === 0 ? 'list_item_move_up_first' : 'list_item_move_up'}
                         onClick={(e) => this.moveItemUp(e)}>
                     {<img src={moveUp}></img>}
                 </div>
-                <div className='list_item_move_down'
+                <div className={(this.props.todoList.items.indexOf(this.props.listItem)) === (this.getLength() - 1) ? 'list_item_move_down_last' : 'list_item_move_down'}
                         onClick={(e) => this.moveItemDown(e)}>
                     {<img src={moveDown}></img>}      
                 </div>
