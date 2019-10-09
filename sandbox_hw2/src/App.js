@@ -20,13 +20,17 @@ class App extends Component {
   }
 
   createListItemCard = () => {
-    this.setState({ currentScreen: AppScreen.ITEM_SCREEN,
-      currentItem: null });
+    this.setState({
+      currentScreen: AppScreen.ITEM_SCREEN,
+      currentItem: null
+    });
   }
 
   editListItemCard = (itemToEdit) => {
-    this.setState({ currentScreen: AppScreen.ITEM_SCREEN,
-                    currentItem: itemToEdit });
+    this.setState({
+      currentScreen: AppScreen.ITEM_SCREEN,
+      currentItem: itemToEdit
+    });
   }
 
   goHome = () => {
@@ -58,10 +62,51 @@ class App extends Component {
     this.loadList(newList);
   }
 
+  /**
+   * This function moves listToMove to the top of the list of lists
+   * that can be edited, which will be reflected on the welcome page.
+   */
+  moveListToTop(listToMove) {
+    // REMOVE THE LIST IF IT EXISTS
+    this.removeList(listToMove);
+
+    // AND THEN ADD IT TO THE TOP OF THE STACK
+    this.prependList(listToMove);
+  }
+
+  /**
+ * Prepends the list to the list of lists.
+ * 
+ * @param {TodoList} listToPrepend List to prepend to the list of lists.
+ */
+  prependList(listToPrepend) {
+    let tempTodoLists = this.state.todoLists;
+    tempTodoLists.unshift(listToPrepend);
+    this.setState({todoLists: tempTodoLists});
+  }
+
+  /**
+   * Removes the list from the list of lists.
+   * 
+   * @param {TodoList} listToRemove List to remove, presumably it's been deleted.
+   */
+  removeList(listToRemove) {
+    // REMOVE IT IF IT EXISTS
+    let tempTodoLists = this.state.todoLists;
+    let indexOfList = tempTodoLists.indexOf(listToRemove);
+    if (indexOfList >= 0){
+      tempTodoLists.splice(indexOfList, 1);
+    }
+    this.setState({todoLists: tempTodoLists});
+  }
+
   loadList = (todoListToLoad) => {
-    this.setState({ currentScreen: AppScreen.LIST_SCREEN,
-                    currentList: todoListToLoad,
-                    currentItem: null  });
+    this.setState({
+      currentScreen: AppScreen.LIST_SCREEN,
+      currentList: todoListToLoad,
+      currentItem: null
+    });
+    this.moveListToTop(todoListToLoad);
     console.log("currentList: " + this.state.currentList);
     console.log("currentScreen: " + this.state.currentScreen);
   }
@@ -82,7 +127,7 @@ class App extends Component {
           editListItemCard={this.editListItemCard}
           createListItemCard={this.createListItemCard} />;
       case AppScreen.ITEM_SCREEN:
-        return <ItemScreen 
+        return <ItemScreen
           currentItem={this.state.currentItem}
           createItem={this.state.createItem}
           loadList={this.loadList}

@@ -26,7 +26,7 @@ export class ListScreen extends Component {
         let newName = document.getElementById('list_name_textfield').value;
         if (newName === "")
         {
-            newName = "No Name";
+            newName = "(No Name)";
         }
 
         this.props.todoList.name = newName;
@@ -39,7 +39,7 @@ export class ListScreen extends Component {
         let newOwner = document.getElementById('list_owner_textfield').value;
         if (newOwner === "")
         {
-            newOwner = "No Owner";
+            newOwner = "(No Owner)";
         }
 
         this.props.todoList.owner = newOwner;

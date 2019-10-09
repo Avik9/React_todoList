@@ -44,7 +44,7 @@ export class ItemScreen extends Component {
         this.props.currentItem.due_date = dueDate;
 
         let completed = document.getElementById('completed_checkbox').checked;
-        this.props.currentItem.checked = completed;
+        this.props.currentItem.completed = completed;
 
         this.props.loadList(this.props.todoList);
     }
