@@ -32,10 +32,10 @@ class jsTPS_Tester {
             // DISPLAY THE CURRENT TPS
             document.getElementById("display").innerHTML += "CURRENT jsTPS: <br>";
             // document.getElementById("display").innerHTML += this.tps;
-            document.getElementById("display").innerHTML += "<br><br>"
+            document.getElementById("display").innerHTML += "<br><br> num is "
             
             // DISPLAY NUM
-            document.getElementById("display").innerHTML += "num is " + this.num.getNum();
+            document.getElementById("display").innerHTML += "" + this.num.getNum();
             document.getElementById("display").innerHTML += "<br><br>";
             
             // DISPLAY THE MENU
