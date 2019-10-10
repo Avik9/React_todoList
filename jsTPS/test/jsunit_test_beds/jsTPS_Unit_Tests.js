@@ -9,16 +9,15 @@
 class jsTPS_Unit_Tests {
 
     constructor() {
-
     }
 
     run() {
         document.getElementById("input").innerHTML = "jsTPS Unit Testing results:<br><br>";
-        this.testAdd();
-        this.testAndMask();
-        this.testOrMask();
-        this.testUndo();
-        // this.testRedo();
+        // this.testAdd();
+        // this.testAndMask();
+        // this.testOrMask();
+        // this.testUndo();
+        this.testRedo();
         // this.testClear();
     }
 
@@ -377,84 +376,169 @@ class jsTPS_Unit_Tests {
         // WE'LL JUST USE A SIMPLE NUM FOR TESTING
         let tps = new jsTPS();
         let num = new Num();
-        Assert.assertEquals(num.getNum(), 0);
+
+        // CHECK DEFAULT NUM VALUE == 0
+        document.getElementById("input").innerHTML += "TEST UNDO CASES:<br><br><br> Creating a new Num object ...  <br><br>&emsp; &emsp;Checking if the num object is equal to 0: ";
+        this.checkEquality(num.getNum(), 0);
+
+        // CHECK THAT TPS HAS TRANSACTION TO UNDO === FALSE
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.hasTransactionToUndo() === false: ";
+        this.checkEquality(tps.hasTransactionToUndo(), false);
+
+        // CHECK THAT TPS HAS TRANSACTION TO REDO === FALSE
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.hasTransactionToRedo() === false: ";
+        this.checkEquality(tps.hasTransactionToRedo(), false);
+
 
         // ADD 3 TRANSACTIONS (5, 10, and 15)
+        document.getElementById("input").innerHTML += "Adding 3 Transactions (5, 10, and 15):<br><br>";
         tps.addTransaction(new AddToNum_Transaction(num, 5));
         tps.addTransaction(new AddToNum_Transaction(num, 10));
         tps.addTransaction(new AddToNum_Transaction(num, 20));
-        Assert.assertTrue(tps.hasTransactionToUndo());
-        Assert.assertFalse(tps.hasTransactionToRedo());
-        Assert.assertEquals(35, num.getNum());
-        Assert.assertEquals(3, tps.getSize());
-        Assert.assertEquals(0, tps.getRedoSize());
-        Assert.assertEquals(3, tps.getUndoSize());
 
-        // UNDO A TRANSACTION AND THEN REDO IT
-        tps.undoTransaction();
-        tps.doTransaction();
-        Assert.assertTrue(tps.hasTransactionToUndo());
-        Assert.assertFalse(tps.hasTransactionToRedo());
-        Assert.assertEquals(35, num.getNum());
-        Assert.assertEquals(3, tps.getSize());
-        Assert.assertEquals(0, tps.getRedoSize());
-        Assert.assertEquals(3, tps.getUndoSize());
+        // CHECK THAT TPS HAS TRANSACTION TO UNDO === TRUE
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.hasTransactionToUndo() === true: ";
+        this.checkEquality(tps.hasTransactionToUndo(), true);
 
-        // UNDO TWO TRANSACTIONS AND THEN REDO THEM
-        tps.undoTransaction();
-        tps.undoTransaction();
-        tps.doTransaction();
-        tps.doTransaction();
-        Assert.assertTrue(tps.hasTransactionToUndo());
-        Assert.assertFalse(tps.hasTransactionToRedo());
-        Assert.assertEquals(35, num.getNum());
-        Assert.assertEquals(3, tps.getSize());
-        Assert.assertEquals(0, tps.getRedoSize());
-        Assert.assertEquals(3, tps.getUndoSize());
+        // CHECK THAT TPS HAS TRANSACTION TO REDO === FALSE
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.hasTransactionToRedo() === false: ";
+        this.checkEquality(tps.hasTransactionToRedo(), false);
 
-        // UNDO ALL THREE TRANSACTIONS AND REDO THEM
-        tps.undoTransaction();
-        tps.undoTransaction();
-        tps.undoTransaction();
-        tps.doTransaction();
-        tps.doTransaction();
-        tps.doTransaction();
-        Assert.assertTrue(tps.hasTransactionToUndo());
-        Assert.assertFalse(tps.hasTransactionToRedo());
-        Assert.assertEquals(35, num.getNum());
-        Assert.assertEquals(3, tps.getSize());
-        Assert.assertEquals(0, tps.getRedoSize());
-        Assert.assertEquals(3, tps.getUndoSize());
+        // CHECK DEFAULT NUM VALUE == 35
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the num object is equal to 35: ";
+        this.checkEquality(num.getNum(), 35);
 
-        // UNDO THREE TRANSACTIONS AND REDO TWO
-        tps.undoTransaction();
-        tps.undoTransaction();
-        tps.undoTransaction();
-        tps.doTransaction();
-        tps.doTransaction();
-        Assert.assertTrue(tps.hasTransactionToUndo());
-        Assert.assertTrue(tps.hasTransactionToRedo());
-        Assert.assertEquals(15, num.getNum());
-        Assert.assertEquals(3, tps.getSize());
-        Assert.assertEquals(1, tps.getRedoSize());
-        Assert.assertEquals(2, tps.getUndoSize());
+        // CHECK THAT TPS HAS TRANSACTION TO UNDO === TRUE
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.hasTransactionToUndo() === true: ";
+        this.checkEquality(tps.hasTransactionToUndo(), true);
 
-        // UNDO ALL THREE TRANSACTIONS AND REDO FOUR, WHICH
-        // SHOULD NOT PRODUCE AN ERROR BUT THE LAST
-        // REDO SHOULD DO NOTHING
+        //CHECK SIZE == 3
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 3: ";
+        this.checkEquality(tps.getSize(), 3);
+
+        //CHECK tps.getRedoSize() == 0
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.getRedoSize() is 0: ";
+        this.checkEquality(tps.getRedoSize(), 0);
+
+        //CHECK tps.getUndoSize() == 3
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.getUndoSize() is 3: ";
+        this.checkEquality(tps.getUndoSize(), 3);
+
+
+        // UNDO A TRANSACTION
+        document.getElementById("input").innerHTML += "Undoing the tps ...<br><br>";
         tps.undoTransaction();
+
+        // CHECK THAT TPS HAS TRANSACTION TO UNDO === TRUE
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.hasTransactionToUndo() === true: ";
+        this.checkEquality(tps.hasTransactionToUndo(), true);
+
+        // CHECK THAT TPS HAS TRANSACTION TO REDO === TRUE
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.hasTransactionToRedo() === true: ";
+        this.checkEquality(tps.hasTransactionToRedo(), true);
+
+        // CHECK NUM == 15
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the num is now equal to 15: ";
+        this.checkEquality(num.getNum(), 15);
+
+        //CHECK SIZE == 3
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 3: ";
+        this.checkEquality(tps.getSize(), 3);
+
+        //CHECK tps.getRedoSize() == 1
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.getRedoSize() is 1: ";
+        this.checkEquality(tps.getRedoSize(), 1);
+
+        //CHECK tps.getUndoSize() == 2
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.getUndoSize() is 2: ";
+        this.checkEquality(tps.getUndoSize(), 2);
+
+
+        // UNDO ANOTHER TRANSACTION
+        document.getElementById("input").innerHTML += "Undoing the tps ...<br><br>";
         tps.undoTransaction();
+
+        // CHECK THAT TPS HAS TRANSACTION TO UNDO === TRUE
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.hasTransactionToUndo() === true: ";
+        this.checkEquality(tps.hasTransactionToUndo(), true);
+
+        // CHECK THAT TPS HAS TRANSACTION TO REDO === TRUE
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.hasTransactionToRedo() === true: ";
+        this.checkEquality(tps.hasTransactionToRedo(), true);
+
+        // CHECK NUM == 5
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the num is now equal to 5: ";
+        this.checkEquality(num.getNum(), 5);
+
+        //CHECK SIZE == 3
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 3: ";
+        this.checkEquality(tps.getSize(), 3);
+
+        //CHECK tps.getRedoSize() == 2
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.getRedoSize() is 2: ";
+        this.checkEquality(tps.getRedoSize(), 2);
+
+        //CHECK tps.getUndoSize() == 1
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.getUndoSize() is 1: ";
+        this.checkEquality(tps.getUndoSize(), 1);
+
+
+        // AND ANOTHER TRANSACTION
+        document.getElementById("input").innerHTML += "Undoing the tps again ...<br><br>";
         tps.undoTransaction();
-        tps.doTransaction();
-        tps.doTransaction();
-        tps.doTransaction();
-        tps.doTransaction();
-        Assert.assertTrue(tps.hasTransactionToUndo());
-        Assert.assertFalse(tps.hasTransactionToRedo());
-        Assert.assertEquals(35, num.getNum());
-        Assert.assertEquals(3, tps.getSize());
-        Assert.assertEquals(0, tps.getRedoSize());
-        Assert.assertEquals(3, tps.getUndoSize());
+
+        // CHECK THAT TPS HAS TRANSACTION TO UNDO === FALSE
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.hasTransactionToUndo() === false: ";
+        this.checkEquality(tps.hasTransactionToUndo(), false);
+
+        // CHECK THAT TPS HAS TRANSACTION TO REDO === TRUE
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.hasTransactionToRedo() === true: ";
+        this.checkEquality(tps.hasTransactionToRedo(), true);
+
+        // CHECK NUM == 0
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the num is now equal to 0: ";
+        this.checkEquality(num.getNum(), 0);
+
+        //CHECK SIZE == 3
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 3: ";
+        this.checkEquality(tps.getSize(), 3);
+
+        //CHECK tps.getRedoSize() == 3
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.getRedoSize() is 3: ";
+        this.checkEquality(tps.getRedoSize(), 3);
+
+        //CHECK tps.getUndoSize() == 0
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.getUndoSize() is 0: ";
+        this.checkEquality(tps.getUndoSize(), 0);
+
+
+        // WE HAVE NO MORE TO UNDO SO THIS SHOULD DO NOTHING
+        document.getElementById("input").innerHTML += "Undoing the tps again ...<br>(This should not change anything since no more to undo) <br><br>";
+        tps.undoTransaction();
+
+        // CHECK THAT TPS HAS TRANSACTION TO UNDO === FALSE
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.hasTransactionToUndo() === false: ";
+        this.checkEquality(tps.hasTransactionToUndo(), false);
+
+        // CHECK THAT TPS HAS TRANSACTION TO REDO === TRUE
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.hasTransactionToRedo() === true: ";
+        this.checkEquality(tps.hasTransactionToRedo(), true);
+
+        // CHECK NUM == 0
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the num is now equal to 0: ";
+        this.checkEquality(num.getNum(), 0);
+
+        //CHECK SIZE == 3
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 3: ";
+        this.checkEquality(tps.getSize(), 3);
+
+        //CHECK tps.getRedoSize() == 3
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.getRedoSize() is 3: ";
+        this.checkEquality(tps.getRedoSize(), 3);
+
+        //CHECK tps.getUndoSize() == 0
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if tps.getUndoSize() is 0: ";
+        this.checkEquality(tps.getUndoSize(), 0);
     }
 
     /**
