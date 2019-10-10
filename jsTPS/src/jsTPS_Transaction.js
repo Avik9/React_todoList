@@ -231,12 +231,12 @@ class jsTPS{
    * @return A textual summary of the TPS.
    */
   toString() {
-      let text = "--Number of Transactions: " + this.getSize() + "\n";
-      text += "--Current Index on Stack: " + mostRecentTransaction + "\n";
-      text += "--Current Transaction Stack:\n";
-      for (let i = 0; i <= mostRecentTransaction; i++) {
-          let jT = transactions.get(i);
-          text += "----" + jT.toString() + "\n";
+      let text = "--Number of Transactions: " + this.getSize() + "<br>";
+      text += "--Current Index on Stack: " + this.mostRecentTransaction + "<br>";
+      text += "--Current Transaction Stack:<br>";
+      for (let i = 0; i <= this.mostRecentTransaction; i++) {
+          let jT = this.transactions.get(i);
+          text += "----" + jT.toString() + "<br>";
       }
       return text;
   }
