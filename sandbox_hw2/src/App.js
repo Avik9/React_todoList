@@ -7,7 +7,8 @@ import ListScreen from './components/list_screen/ListScreen'
 const AppScreen = {
   HOME_SCREEN: "HOME_SCREEN",
   LIST_SCREEN: "LIST_SCREEN",
-  ITEM_SCREEN: "ITEM_SCREEN"
+  ITEM_SCREEN: "ITEM_SCREEN",
+  DELETE_SCREEN: "DELETE_SCREEN"
 }
 
 class App extends Component {
@@ -16,7 +17,8 @@ class App extends Component {
     todoLists: testTodoListData.todoLists,
     currentList: null,
     currentItem: null,
-    createItem: false
+    createItem: false,
+    num: 1
   }
 
   createListItemCard = () => {
@@ -38,7 +40,30 @@ class App extends Component {
     this.setState({ currentList: null });
   }
 
+  showDeleteDialog = () => {
+    document.getElementById('modal_yes_no_dialog_background_hide').id = 'modal_yes_no_dialog_background_show';
+
+    if(!this.state.num)
+    {
+      document.getElementById('list_delete_list').addEventListener("click", () => this.deleteList(this.state.currentList.name));
+      document.getElementById('list_cancel_delete_list').addEventListener("click", () => this.hideDeleteDialog());
+      this.setState({num: -10});
+    
+    }
+  }
+
+  hideDeleteDialog = () => {
+    let element = document.getElementById('modal_yes_no_dialog_background_show');
+
+    if(element)
+    {
+        element.id = 'modal_yes_no_dialog_background_hide';
+    }
+  }
+
   deleteList = (listName) => {
+    document.getElementById('modal_yes_no_dialog_background_show').id = 'modal_yes_no_dialog_background_hide';
+
     this.state.todoLists.forEach((listItem, indexOfList) => {
       if (listItem.name === listName) {
         if (indexOfList >= 0) {
@@ -104,7 +129,8 @@ class App extends Component {
     this.setState({
       currentScreen: AppScreen.LIST_SCREEN,
       currentList: todoListToLoad,
-      currentItem: null
+      currentItem: null,
+      num: this.state.num - 1
     });
     this.moveListToTop(todoListToLoad);
     console.log("currentList: " + this.state.currentList);
@@ -122,7 +148,7 @@ class App extends Component {
         return <ListScreen
           goHome={this.goHome.bind(this)}
           todoList={this.state.currentList}
-          deleteList={this.deleteList}
+          deleteList={this.showDeleteDialog}
           loadList={this.loadList}
           editListItemCard={this.editListItemCard}
           createListItemCard={this.createListItemCard} />;

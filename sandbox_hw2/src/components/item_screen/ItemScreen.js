@@ -35,7 +35,7 @@ export class ItemScreen extends Component {
      */
     updateItem = () => {
         let description = document.getElementById('item_description_textfield').value;
-        this.props.currentItem.description = description;
+        this.props.currentItem.description = description === '' ? "(No Description)" :  description;
 
         let assignedTo = document.getElementById('assigned_to_textfield').value;
         this.props.currentItem.assigned_to = assignedTo;
@@ -84,7 +84,7 @@ export class ItemScreen extends Component {
 
         let newItem = {
             key: position,
-            description: document.getElementById('item_description_textfield').value,
+            description: document.getElementById('item_description_textfield').value === "" ? "(No Description)" :  document.getElementById('item_description_textfield').value,
             assigned_to: document.getElementById('assigned_to_textfield').value,
             due_date: document.getElementById('due_date_dropdown').value,
             completed: document.getElementById('completed_checkbox').checked
