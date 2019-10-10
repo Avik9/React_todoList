@@ -29,7 +29,6 @@ class AddToNum_Transaction extends jsTPS_Transaction
      * This transaction simply adds the value to the num.
      */
     doTransaction() {
-        console.log("here");
         let oldNum = this.num.getNum();
         let newNum = oldNum + this.amountToAdd;
         this.num.setNum(newNum);
@@ -39,8 +38,8 @@ class AddToNum_Transaction extends jsTPS_Transaction
      * As the reverse of do, this method substracts from num.
      */
     undoTransaction() {
-        let oldNum = num.getNum();
-        let newNum = oldNum - amountToAdd;
+        let oldNum = this.num.getNum();
+        let newNum = oldNum - this.amountToAdd;
         this.num.setNum(newNum);
     }
 
@@ -50,6 +49,6 @@ class AddToNum_Transaction extends jsTPS_Transaction
      * @return A string storing a textual summary of this object.
      */
     toString() {
-        return "Add " + amountToAdd;
+        return "Add " + this.amountToAdd;
     }
 }
