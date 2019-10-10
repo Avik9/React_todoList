@@ -137,6 +137,8 @@ class App extends Component {
     console.log("currentScreen: " + this.state.currentScreen);
   }
 
+  // Add the listener here with listener()
+
   render() {
     switch (this.state.currentScreen) {
       case AppScreen.HOME_SCREEN:

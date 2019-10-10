@@ -13,10 +13,10 @@ class jsTPS_Unit_Tests {
     }
 
     run() {
-        document.getElementById("input").innerHTML = "jsTPS Unit Testing results<br><br>";
+        document.getElementById("input").innerHTML = "jsTPS Unit Testing results:<br><br>";
         this.testAdd();
-        // this.testAndMask();
-        // this.testOrMask();
+        this.testAndMask();
+        this.testOrMask();
         // this.testUndo();
         // this.testRedo();
         // this.testClear();
@@ -32,7 +32,7 @@ class jsTPS_Unit_Tests {
 
 
         // CHECK DEFAULT NUM VALUE == 0
-        document.getElementById("input").innerHTML += "Creating a new Num object ...  <br><br>&emsp; &emsp;Checking if the num object is equal to 0: ";
+        document.getElementById("input").innerHTML += "TEST ADD CASES:<br><br><br> Creating a new Num object ...  <br><br>&emsp; &emsp;Checking if the num object is equal to 0: ";
 
         this.checkEquality(num.getNum(), 0);
 
@@ -125,7 +125,7 @@ class jsTPS_Unit_Tests {
 
 
         // CHECK DEFAULT NUM VALUE == 0
-        document.getElementById("input").innerHTML += "Creating a new num ...  <br><br>&emsp; &emsp;Checking if the num object is equal to 0: ";
+        document.getElementById("input").innerHTML += "TEST ANDMASK CASES:<br><br><br> Creating a new num ...  <br><br>&emsp; &emsp;Checking if the num object is equal to 0: ";
 
         this.checkEquality(num.getNum(), 0);
 
@@ -140,28 +140,28 @@ class jsTPS_Unit_Tests {
         // AND MASKING 12 WITH 4
         document.getElementById("input").innerHTML += "Adding Mask Taransaction between 12 and 4 ...<br><br>";
 
-        // tps.addTransaction(new AndMask_Transaction(num, num.getNum(), 4));
+        tps.addTransaction(new AndMask_Transaction(num, num.getNum(), 4));
 
         document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the num is now equal to 4: ";
 
         this.checkEquality(num.getNum(), 4);
 
 
-        // CHECKING TPS SIZE == 3
-        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 3: ";
+        // CHECKING TPS SIZE == 2
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 2: ";
 
-        this.checkEquality(tps.getSize(), 3);
+        this.checkEquality(tps.getSize(), 2);
 
 
         // UNDO TRANSACTION
         document.getElementById("input").innerHTML += "Undoing the tps ...<br><br>";
 
-        // tps.undoTransaction();
+        tps.undoTransaction();
 
         //CHECK SIZE == 3
-        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 3: ";
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 1: ";
 
-        this.checkEquality(tps.getSize(), 3);
+        this.checkEquality(tps.getNumTrasactionsToUndo(), 1);
 
         // CHECK NUM == 12
         document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the num is now equal to 12: ";
@@ -169,9 +169,9 @@ class jsTPS_Unit_Tests {
         this.checkEquality(num.getNum(), 12);
 
         //CHECK SIZE == 2
-        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 2: ";
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 1: ";
 
-        this.checkEquality(tps.getSize(), 2);
+        this.checkEquality(tps.getNumTrasactionsToUndo(), 1);
 
 
         //CHECK tps.getRedoSize() == 1
@@ -193,7 +193,7 @@ class jsTPS_Unit_Tests {
 
 
         // CHECK DEFAULT NUM VALUE == 0
-        document.getElementById("input").innerHTML += "Creating a new num ...  <br><br>&emsp; &emsp;Checking if the num object is equal to 0: ";
+        document.getElementById("input").innerHTML += "TEST ORMASK CASES:<br><br><br>Creating a new num ...  <br><br>&emsp; &emsp;Checking if the num object is equal to 0: ";
 
         this.checkEquality(num.getNum(), 0);
 
@@ -204,31 +204,31 @@ class jsTPS_Unit_Tests {
         tps.addTransaction(new AddToNum_Transaction(num, 12));
 
 
-        // AND MASKING 12 WITH 4
+        // OR MASKING 12 WITH 4
         document.getElementById("input").innerHTML += "Adding Mask Taransaction between 12 and 4 ...<br><br>";
 
         tps.addTransaction(new OrMask_Transaction(num, num.getNum(), 4));
 
-        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the num is now equal to 4: ";
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the num is now equal to 12: ";
 
-        this.checkEquality(num.getNum(), 4);
+        this.checkEquality(num.getNum(), 12);
 
 
-        // CHECKING TPS SIZE == 3
-        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 3: ";
+        // CHECKING TPS SIZE == 2
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 2: ";
 
-        this.checkEquality(tps.getSize(), 3);
+        this.checkEquality(tps.getSize(), 2);
 
 
         // UNDO TRANSACTION
         document.getElementById("input").innerHTML += "Undoing the tps ...<br><br>";
 
-        // tps.undoTransaction();
+        tps.undoTransaction();
 
         //CHECK SIZE == 3
-        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 3: ";
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 1: ";
 
-        this.checkEquality(tps.getSize(), 3);
+        this.checkEquality(tps.getNumTrasactionsToUndo(), 1);
 
         // CHECK NUM == 12
         document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the num is now equal to 12: ";
@@ -236,9 +236,9 @@ class jsTPS_Unit_Tests {
         this.checkEquality(num.getNum(), 12);
 
         //CHECK SIZE == 2
-        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 2: ";
+        document.getElementById("input").innerHTML += "&emsp; &emsp;Checking if the tps' size is 1: ";
 
-        this.checkEquality(tps.getSize(), 2);
+        this.checkEquality(tps.getNumTrasactionsToUndo(), 1);
 
 
         //CHECK tps.getRedoSize() == 1

@@ -1,29 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>Todo</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <div id="modal_yes_no_dialog_background_hide">
-      <div id="modal_yes_no_dialog_hide">
-          Delete List?
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <title>Todo</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <div id="modal_yes_no_dialog_background_hide" data-animation="slideInOutLeft">
+    <div id="modal_yes_no_dialog_hide">
+      Delete List?
       <div id="delete_dialog_box_question">Are you sure you want to delete this list?</div>
-          <div id="list_delete_buttons">
-              <button id="list_delete_list">Yes</button>
-              <button id="list_cancel_delete_list">No</button>
-          </div>
-          <div>The list will not be retrievable.</div>
+      <div id="list_delete_buttons">
+        <button id="list_delete_list">Yes</button>
+        <button id="list_cancel_delete_list">No</button>
       </div>
+      <div>The list will not be retrievable.</div>
+    </div>
   </div>
-  </body>
+  <!-- <div class="modal" id="modal_yes_no_dialog" data-animation="slideInOutLeft">
+    <div class="modal_dialog">
+      <header class="dialog_header">
+        Delete list?
+      </header>
+      <section class="dialog_content">
+        <p><strong>Are you sure you want to delete this list?</strong></p>
+      </section>
+      <button id="dialog_yes_button">Yes</button>
+      <button id="dialog_no_button">No</button>
+      <footer class="dialog_footer">
+        The list will not be retreivable.
+      </footer>
+    </div>
+  </div> -->
+</body>
+
 </html>

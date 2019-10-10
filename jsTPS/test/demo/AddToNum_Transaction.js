@@ -32,7 +32,7 @@ class AddToNum_Transaction extends jsTPS_Transaction
         console.log("here");
         let oldNum = this.num.getNum();
         let newNum = oldNum + this.amountToAdd;
-        num.setNum(newNum);
+        this.num.setNum(newNum);
     }
 
     /**
@@ -41,7 +41,7 @@ class AddToNum_Transaction extends jsTPS_Transaction
     undoTransaction() {
         let oldNum = num.getNum();
         let newNum = oldNum - amountToAdd;
-        num.setNum(newNum);
+        this.num.setNum(newNum);
     }
 
     /**

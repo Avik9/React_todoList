@@ -23,14 +23,14 @@ class jsTPS_Transaction {
   /**
   * This method is called by jsTPS when a transaction is executed.
   */
-  doTransaction = function () {
+    doTransaction() {
     window.alert('Inheritance did not work and you are printing from the "Interface"');
   }
 
   /**
   * This method is called by jTPS when a transaction is undone.
   */
-  undoTransaction = function () {
+    undoTransaction () {
     window.alert('Inheritance did not work and you are printing from the "Interface"');
   }
 }
@@ -138,7 +138,7 @@ class jsTPS{
   undoTransaction() {
       if (this.hasTransactionToUndo()) {
           this.performingUndo = true;
-          let transaction = this.transactions[this.mostRecentTransaction+1];
+          let transaction = this.transactions[this.mostRecentTransaction];
           transaction.undoTransaction();
           this.mostRecentTransaction--;
           this.performingUndo = false;
@@ -171,6 +171,17 @@ class jsTPS{
   }
 
   /**
+   * Accessor method that returns the number of transactions currently
+   * on the transaction stack. This includes those that may have been
+   * done, undone, and redone.
+   * 
+   * @return The number of transactions currently in the transaction stack.
+   */
+  getNumTrasactionsToUndo() {
+    return this.mostRecentTransaction + 1;
+}
+
+  /**
    * This method returns the number of transactions currently in the
    * transaction stack that can be redone, meaning they have been added
    * and done, and then undone.
@@ -199,7 +210,7 @@ class jsTPS{
    * @return true if an undo operation is possible, false otherwise.
    */
   hasTransactionToUndo() {
-      return mostRecentTransaction >= 0;
+      return this.mostRecentTransaction >= 0;
   }
 
   /**
