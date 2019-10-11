@@ -1,1 +1,0 @@
-This folder contains the JavaScript version of the Java Transaction Processing System
