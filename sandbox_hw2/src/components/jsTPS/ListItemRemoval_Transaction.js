@@ -12,30 +12,28 @@ class ListItemRemoval_Transaction extends jsTPS_Transaction{
      * 
      * @param pos
      * @param item
+     * @param toDoList
      */
-    constructor(pos, item) {
+    constructor(pos, item, toDoList) {
         // KEEP THESE FOR LATER
         super();
         this.positionInList = pos;
         this.ListItemCard = item;
+        this.toDoList = toDoList;
     }
 
     /**
      * This transaction simply adds the value to the num.
      */
     doTransaction() {
-        let oldNum = this.num.getNum();
-        let newNum = oldNum + this.amountToAdd;
-        this.num.setNum(newNum);
+        // Remove the item from the list
     }
 
     /**
      * As the reverse of do, this method substracts from num.
      */
     undoTransaction() {
-        let oldNum = this.num.getNum();
-        let newNum = oldNum - this.amountToAdd;
-        this.num.setNum(newNum);
+        // Add the item back to the list
     }
 
     /**
@@ -44,6 +42,6 @@ class ListItemRemoval_Transaction extends jsTPS_Transaction{
      * @return A string storing a textual summary of this object.
      */
     toString() {
-        return "Add " + this.amountToAdd;
+        return this.ListItemCard.description + " was removed";
     }
 }

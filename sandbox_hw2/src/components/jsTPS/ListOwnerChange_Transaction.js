@@ -12,30 +12,28 @@ class ListOwnerChange_Transaction extends jsTPS_Transaction{
      * 
      * @param prevOwnerName
      * @param newOwnerName
+     * @param toDoList
      */
-    constructor(previousOwner, newOwner) {
-        // KEEP THESE FOR LATER
+    constructor(previousOwner, newOwner, toDoList) {
+
         super();
         this.prevOwnerName = previousOwner;
         this.newOwnerName = newOwner;
+        this.toDoList = toDoList;
     }
 
     /**
-     * This transaction simply adds the value to the num.
+     * This transaction changes the list owner to new owner.
      */
     doTransaction() {
-        let oldNum = this.num.getNum();
-        let newNum = oldNum + this.amountToAdd;
-        this.num.setNum(newNum);
+        // Change the list to the new owner
     }
 
     /**
-     * As the reverse of do, this method substracts from num.
+     * As the reverse of do, this method changes the list owner to the old owner.
      */
     undoTransaction() {
-        let oldNum = this.num.getNum();
-        let newNum = oldNum - this.amountToAdd;
-        this.num.setNum(newNum);
+        // Change the list to the old owner
     }
 
     /**
@@ -44,6 +42,6 @@ class ListOwnerChange_Transaction extends jsTPS_Transaction{
      * @return A string storing a textual summary of this object.
      */
     toString() {
-        return "Add " + this.amountToAdd;
+        return this.prevOwnerName + " changed to " + this.newOwnerName;
     }
 }

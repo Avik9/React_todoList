@@ -11,31 +11,29 @@ class ListNameChange_Transaction extends jsTPS_Transaction {
      * the transaction.
      * 
      * @param previousName
-     * @param newName
+     * @param newName     
+     * @param toDoList
      */
-    constructor(previousName, newName) {
+    constructor(previousName, newName, toDoList) {
         // KEEP THESE FOR LATER
         super();
         this.prevListName = previousName;
         this.newListName = newName;
+        this.toDoList = toDoList;
     }
 
     /**
-     * This transaction simply adds the value to the num.
+     * This transaction simply changes the list name to the new name.
      */
     doTransaction() {
-        let oldNum = this.num.getNum();
-        let newNum = oldNum + this.amountToAdd;
-        this.num.setNum(newNum);
+        // Change the list to the new name
     }
 
     /**
-     * As the reverse of do, this method substracts from num.
+     * As the reverse of do, changes the list name to the old name.
      */
     undoTransaction() {
-        let oldNum = this.num.getNum();
-        let newNum = oldNum - this.amountToAdd;
-        this.num.setNum(newNum);
+        // Change the list to the old name
     }
 
     /**
@@ -44,6 +42,6 @@ class ListNameChange_Transaction extends jsTPS_Transaction {
      * @return A string storing a textual summary of this object.
      */
     toString() {
-        return "Add " + this.amountToAdd;
+        return this.prevListName + " changed to " + this.newListName;
     }
 }

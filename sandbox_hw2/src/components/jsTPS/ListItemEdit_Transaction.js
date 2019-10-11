@@ -12,30 +12,28 @@ class ListItemEdit_Transaction extends jsTPS_Transaction{
      * 
      * @param prevItem
      * @param newItem
+     * @param toDoList
      */
-    constructor(prevItem, newItem) {
+    constructor(prevItem, newItem, toDoList) {
         // KEEP THESE FOR LATER
         super();
         this.previousItem = prevItem;
         this.newItem = newItem;
+        this.toDoList = toDoList;
     }
 
     /**
      * This transaction simply adds the value to the num.
      */
     doTransaction() {
-        let oldNum = this.num.getNum();
-        let newNum = oldNum + this.amountToAdd;
-        this.num.setNum(newNum);
+        // Change the old item to the new item
     }
 
     /**
      * As the reverse of do, this method substracts from num.
      */
     undoTransaction() {
-        let oldNum = this.num.getNum();
-        let newNum = oldNum - this.amountToAdd;
-        this.num.setNum(newNum);
+        // Change the new item to the old item
     }
 
     /**
@@ -44,6 +42,6 @@ class ListItemEdit_Transaction extends jsTPS_Transaction{
      * @return A string storing a textual summary of this object.
      */
     toString() {
-        return "Add " + this.amountToAdd;
+        return this.previousItem + " was editted";
     }
 }

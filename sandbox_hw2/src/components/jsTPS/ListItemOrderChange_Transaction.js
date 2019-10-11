@@ -12,30 +12,30 @@ class ListItemOrderChange_Transaction{
      * 
      * @param prevPos
      * @param newPos
+     * @param itemCard
+     * @param todoList
      */
-    constructor(prevPos, newPos) {
+    constructor(prevPos, newPos, itemCard, todoList) {
         // KEEP THESE FOR LATER
         super();
         this.previousPosition = prevPos;
         this.newPosition = newPos;
+        this.listItemCard = itemCard;
+        this.todoList = todoList;
     }
 
     /**
      * This transaction simply adds the value to the num.
      */
     doTransaction() {
-        let oldNum = this.num.getNum();
-        let newNum = oldNum + this.amountToAdd;
-        this.num.setNum(newNum);
+        // Move the item up or down
     }
 
     /**
      * As the reverse of do, this method substracts from num.
      */
     undoTransaction() {
-        let oldNum = this.num.getNum();
-        let newNum = oldNum - this.amountToAdd;
-        this.num.setNum(newNum);
+        // Move the item to the opposite direction
     }
 
     /**
@@ -44,6 +44,12 @@ class ListItemOrderChange_Transaction{
      * @return A string storing a textual summary of this object.
      */
     toString() {
-        return "Add " + this.amountToAdd;
+        if(this.newPosition < this.previousPosition)
+        {
+            return this.listItemCard.description + " was moved up"
+        }
+        else{
+            return this.listItemCard.description + " was moved down"
+        }
     }
 }
