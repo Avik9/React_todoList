@@ -1,10 +1,10 @@
-import jsTPS_Transaction from './jsTPS_Transaction'
+import jsTPS from './jsTPS'
 
 /**
  *
  * @author Avik Kadakia
  */
-class ListOwnerChange_Transaction extends jsTPS_Transaction{
+class ListOwnerChange_Transaction extends jsTPS{
     /**
      * Constructor for this transaction, it initializes this
      * object with all the data needed to both do and undo
@@ -26,14 +26,14 @@ class ListOwnerChange_Transaction extends jsTPS_Transaction{
      * This transaction changes the list owner to new owner.
      */
     doTransaction() {
-        // Change the list to the new owner
+        this.toDoList.owner = this.newOwnerName;
     }
 
     /**
      * As the reverse of do, this method changes the list owner to the old owner.
      */
     undoTransaction() {
-        // Change the list to the old owner
+        this.toDoList.owner = this.prevOwnerName;
     }
 
     /**
@@ -45,3 +45,5 @@ class ListOwnerChange_Transaction extends jsTPS_Transaction{
         return this.prevOwnerName + " changed to " + this.newOwnerName;
     }
 }
+
+export default ListOwnerChange_Transaction

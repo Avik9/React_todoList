@@ -7,6 +7,7 @@ import { list } from 'postcss';
 
 // FOR jsTPS
 import ListNameChange_Transaction from '../jsTPS/ListNameChange_Transaction'
+import ListOwnerChange_Transaction from '../jsTPS/ListOwnerChange_Transaction'
 
 export class ListScreen extends Component {
     getListName() {
@@ -38,20 +39,21 @@ export class ListScreen extends Component {
 
         this.props.jsTPSstack.addTransaction(newNameTransaction);
 
-        // this.props.todoList.name = newName;
-
         return this.props.todoList.name;
     }
 
     setListOwner = () =>
     {
+        let oldOwner = this.props.todoList.owner;
         let newOwner = document.getElementById('list_owner_textfield').value;
         if (newOwner === "")
         {
             newOwner = "(No Owner)";
         }
 
-        this.props.todoList.owner = newOwner;
+        let newOwnerTransaction = new ListOwnerChange_Transaction(oldOwner, newOwner, this.props.todoList);
+
+        this.props.jsTPSstack.addTransaction(newOwnerTransaction);
 
         return this.props.todoList.owner;
     }
@@ -68,7 +70,7 @@ export class ListScreen extends Component {
                             defaultValue={this.getListName()} 
                             type="text" 
                             id="list_name_textfield"
-                            onChange={() => this.setListName()} />
+                            onBlur={() => this.setListName()} />
                             
                     </div>
                     <div id="list_details_owner_container" className="text_toolbar">
@@ -77,7 +79,7 @@ export class ListScreen extends Component {
                             defaultValue={this.getListOwner()}
                             type="text" 
                             id="list_owner_textfield"
-                            onChange={() => this.setListOwner()} 
+                            onBlur={() => this.setListOwner()} 
                             />
                     </div>
                 </div>

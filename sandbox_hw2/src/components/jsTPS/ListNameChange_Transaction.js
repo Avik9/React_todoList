@@ -26,18 +26,14 @@ class ListNameChange_Transaction extends jsTPS {
      * This transaction simply changes the list name to the new name.
      */
     doTransaction() {
-        
-        // if(this.todoList.name === this.oldName)
-        // {
-            this.todoList.name = this.newListName;
-        // }
+        this.todoList.name = this.newListName;
     }
 
     /**
      * As the reverse of do, changes the list name to the old name.
      */
     undoTransaction() {
-        // Change the list to the old name
+        this.todoList.name = this.prevListName;
     }
 
     /**
