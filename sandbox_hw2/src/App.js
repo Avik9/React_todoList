@@ -3,7 +3,7 @@ import testTodoListData from './TestTodoListData.json'
 import HomeScreen from './components/home_screen/HomeScreen'
 import ItemScreen from './components/item_screen/ItemScreen'
 import ListScreen from './components/list_screen/ListScreen'
-import jsTPS from './components/jsTPS/jsTPS_Transaction'
+import jsTPS from './components/jsTPS/jsTPS'
 
 const AppScreen = {
   HOME_SCREEN: "HOME_SCREEN",
@@ -20,7 +20,11 @@ class App extends Component {
     currentItem: null,
     createItem: false,
     num: 1,
-    jsTPSstack: new jsTPS()
+  }
+
+  constructor() {
+    super();
+    this.jsTPSstack = new jsTPS()
   }
 
   createListItemCard = () => {
@@ -147,7 +151,8 @@ class App extends Component {
         return <HomeScreen
           loadList={this.loadList.bind(this)}
           todoLists={this.state.todoLists}
-          createNewList={this.createNewList} />;
+          createNewList={this.createNewList}
+          jsTPSstack={this.jsTPSstack} />;
       case AppScreen.LIST_SCREEN:
         return <ListScreen
           goHome={this.goHome.bind(this)}
@@ -155,13 +160,15 @@ class App extends Component {
           deleteList={this.showDeleteDialog}
           loadList={this.loadList}
           editListItemCard={this.editListItemCard}
-          createListItemCard={this.createListItemCard} />;
+          createListItemCard={this.createListItemCard}
+          jsTPSstack={this.jsTPSstack} />;
       case AppScreen.ITEM_SCREEN:
         return <ItemScreen
           currentItem={this.state.currentItem}
           createItem={this.state.createItem}
           loadList={this.loadList}
-          todoList={this.state.currentList} />;
+          todoList={this.state.currentList}
+          jsTPSstack={this.jsTPSstack} />;
       default:
         return <div>ERROR</div>;
     }

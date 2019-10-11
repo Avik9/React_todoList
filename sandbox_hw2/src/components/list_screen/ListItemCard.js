@@ -73,16 +73,16 @@ export class ListItemCard extends Component {
                 <div className=
                 {this.props.todoList.items.indexOf(this.props.listItem) === 0 ? 'list_item_move_up_first' : 'list_item_move_up'}
                         onClick={(e) => this.moveItemUp(e)}>
-                    {<img src={moveUp}></img>}
+                    {<img src={moveUp} alt=""></img>}
                 </div>
                 <div className=
                 {(this.props.todoList.items.indexOf(this.props.listItem)) === (this.getLength() - 1) ? 'list_item_move_down_last' : 'list_item_move_down'}
                         onClick={(e) => this.moveItemDown(e)}>
-                    {<img src={moveDown}></img>}      
+                    {<img src={moveDown} alt=""></img>}      
                 </div>
                 <div className='list_item_card_delete'
                         onClick={(e) => this.deleteItem(e)}>
-                    {<img src={deleteCard}></img>}
+                    {<img src={deleteCard} alt=""></img>}
                 </div>
             </div>
         )

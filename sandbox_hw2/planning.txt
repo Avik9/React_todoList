@@ -1,0 +1,7 @@
+Planning:
+
+List Name Change                                :       ListScreen
+Owner Name Change                               :       ListScreen
+List Item Order Change (i.e. move up/down>      :       ListItemsCard
+List Item Removal                               :       ListItemsCard
+List Item Edit (i.e. result of submit)          :       ItemScreen

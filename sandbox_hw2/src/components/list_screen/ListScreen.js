@@ -5,11 +5,14 @@ import ListTrash from './ListTrash'
 import PropTypes from 'prop-types';
 import { list } from 'postcss';
 
+// FOR jsTPS
+import ListNameChange_Transaction from '../jsTPS/ListNameChange_Transaction'
+
 export class ListScreen extends Component {
     getListName() {
         if (this.props.todoList) {
             let name = this.props.todoList.name;
-            return this.props.todoList.name;
+            return name;
         }
         else
             return "";
@@ -17,19 +20,25 @@ export class ListScreen extends Component {
     getListOwner() {
         if (this.props.todoList) {
             let owner = this.props.todoList.owner;
-            return this.props.todoList.owner;
+            return owner;
         }
     }
 
     setListName = () =>
     {
+        let oldName = this.props.todoList.name;
+        
         let newName = document.getElementById('list_name_textfield').value;
         if (newName === "")
         {
             newName = "(No Name)";
         }
 
-        this.props.todoList.name = newName;
+        let newNameTransaction = new ListNameChange_Transaction(oldName, newName, this.props.todoList);
+
+        this.props.jsTPSstack.addTransaction(newNameTransaction);
+
+        // this.props.todoList.name = newName;
 
         return this.props.todoList.name;
     }

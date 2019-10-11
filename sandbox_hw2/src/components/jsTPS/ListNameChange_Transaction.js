@@ -1,10 +1,10 @@
-import jsTPS_Transaction from './jsTPS_Transaction'
+import jsTPS from './jsTPS'
 
 /**
  *
  * @author Avik Kadakia
  */
-class ListNameChange_Transaction extends jsTPS_Transaction {
+class ListNameChange_Transaction extends jsTPS {
     /**
      * Constructor for this transaction, it initializes this
      * object with all the data needed to both do and undo
@@ -19,14 +19,18 @@ class ListNameChange_Transaction extends jsTPS_Transaction {
         super();
         this.prevListName = previousName;
         this.newListName = newName;
-        this.toDoList = toDoList;
+        this.todoList = toDoList;
     }
 
     /**
      * This transaction simply changes the list name to the new name.
      */
     doTransaction() {
-        // Change the list to the new name
+        
+        // if(this.todoList.name === this.oldName)
+        // {
+            this.todoList.name = this.newListName;
+        // }
     }
 
     /**
@@ -45,3 +49,5 @@ class ListNameChange_Transaction extends jsTPS_Transaction {
         return this.prevListName + " changed to " + this.newListName;
     }
 }
+
+export default ListNameChange_Transaction
