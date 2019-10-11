@@ -18,16 +18,11 @@ class jsTPS_Tester {
         this.keepGoing = true;
 
         // THESE ARE TO HELP WITH I/O
-        document.getElementById("input_button").addEventListener("click", () => this.main());
+        document.getElementById("input_button").addEventListener("click", () => this.calculate());
         this.printer.innerHTML += "jsTPS_Tester: <br><br>";
         document.getElementById("output").value = "";
-    }
 
-    run() {
-        while (this.keepGoing) {
-            this.menu();
-            this.main();
-        }
+        // this.run();
     }
 
     /**
@@ -38,6 +33,8 @@ class jsTPS_Tester {
      * @param args Not used in this demo.
      */
     menu() {
+        document.getElementById("input_button").addEventListener("click", () => this.calculate());
+
         // DISPLAY THE CURRENT TPS
         this.printer.innerHTML += "CURRENT jsTPS: <br>";
         this.printer.innerHTML += this.tps.toString();
@@ -55,53 +52,60 @@ class jsTPS_Tester {
             "-<br><br>";
     }
 
-    main() {
+    addToNumTransaction() {
+        entry = document.getElementById("output").value;
+        let amountToAdd = parseInt("5");
+        let transaction = new AddToNum_Transaction(this.num, 5);
+        this.tps.addTransaction(transaction);
+
+        this.menu();
+    }
+
+    calculate() 
+    {
         // GET THE USER SELECTION
-
-        if(!document.getElementById('output'))
-        {
-            window.alert('Does not exist');
-        }
-        else{
-            console.log('exists');
-        }
-
-        let element = document.getElementById("output");
-
-        let entry = element.value;
+        let entry = document.getElementById("output").value;
 
         // ADD AND EXECUTE A TRANSACTION
         if (entry === "1") {
             this.printer.innerHTML += "<br>Enter an amount to add: ";
-            entry = input.nextLine();
-            let amountToAdd = Integer.parseInt(entry);
-            transaction = new AddToNum_Transaction(num, amountToAdd);
-            tps.addTransaction(transaction);
+            document.getElementById("output").value = "";
+            document.getElementById("input_button").addEventListener("click", () => this.addToNumTransaction());
+            
         }
         // UNDO A TRANSACTION
         else if (entry === "2") {
-            tps.undoTransaction();
+            this.tps.undoTransaction();
+            document.getElementById("output").value = "";
+            this.menu();
         }
         // REDO A TRANSACTION
         else if (entry === "3") {
-            tps.doTransaction();
+            this.tps.doTransaction();
+            document.getElementById("output").value = "";
+            this.menu();
         }
         // CLEAR ALL TRANSACTIONS
         else if (entry === "4") {
-            tps.clearAllTransactions();
+            this.tps.clearAllTransactions();
+            document.getElementById("output").value = "";
+            this.menu();
         }
         // CLEAR ALL TRANSACTIONS AND RESET NUM TO 0
         else if (entry === "5") {
-            tps.clearAllTransactions();
-            num.setNum(0);
+            this.tps.clearAllTransactions();
+            this.num.setNum(0);
+            document.getElementById("output").value = "";
+            this.menu();
         }
         // QUIT
         else if (entry.startsWith("Q")) {
-            this.keepGoing = false;
-
             this.printer.innerHTML += "GOODBYE";
         }
-    
-        this.run();
+        else{
+            this.printer.innerHTML += "Please choose another option";
+            document.getElementById("output").value = "";
+            this.menu();
+        }
     }
 }

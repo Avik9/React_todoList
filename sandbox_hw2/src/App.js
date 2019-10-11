@@ -3,6 +3,7 @@ import testTodoListData from './TestTodoListData.json'
 import HomeScreen from './components/home_screen/HomeScreen'
 import ItemScreen from './components/item_screen/ItemScreen'
 import ListScreen from './components/list_screen/ListScreen'
+import jsTPS from './components/jsTPS/jsTPS_Transaction'
 
 const AppScreen = {
   HOME_SCREEN: "HOME_SCREEN",
@@ -18,7 +19,8 @@ class App extends Component {
     currentList: null,
     currentItem: null,
     createItem: false,
-    num: 1
+    num: 1,
+    jsTPSstack: new jsTPS()
   }
 
   createListItemCard = () => {
