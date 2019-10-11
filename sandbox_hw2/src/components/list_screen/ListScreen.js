@@ -59,6 +59,7 @@ export class ListScreen extends Component {
     }
 
     render() {
+        this.props.jsTPSstack.clearAllTransactions();
         return (
             <div id="todo_list">
                 <ListHeading goHome={this.props.goHome} />

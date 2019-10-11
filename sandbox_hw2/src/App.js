@@ -151,8 +151,7 @@ class App extends Component {
         return <HomeScreen
           loadList={this.loadList.bind(this)}
           todoLists={this.state.todoLists}
-          createNewList={this.createNewList}
-          jsTPSstack={this.jsTPSstack} />;
+          createNewList={this.createNewList} />;
       case AppScreen.LIST_SCREEN:
         return <ListScreen
           goHome={this.goHome.bind(this)}

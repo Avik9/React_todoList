@@ -45,3 +45,5 @@ class ListItemEdit_Transaction extends jsTPS_Transaction{
         return this.previousItem + " was editted";
     }
 }
+
+export default ListItemEdit_Transaction
