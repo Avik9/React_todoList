@@ -1,10 +1,10 @@
-import jsTPS_Transaction from './jsTPS_Transaction'
+import jsTPS from './jsTPS'
 
 /**
  *
  * @author Avik Kadakia
  */
-class ListItemOrderChange_Transaction{
+class ListItemOrderChange_Transaction extends jsTPS {
     /**
      * Constructor for this transaction, it initializes this
      * object with all the data needed to both do and undo
@@ -28,14 +28,18 @@ class ListItemOrderChange_Transaction{
      * This transaction simply adds the value to the num.
      */
     doTransaction() {
-        // Move the item up or down
+        let temp = this.todoList.items[this.newPosition];
+        this.todoList.items[this.newPosition] = this.listItemCard;
+        this.todoList.items[this.previousPosition] = temp;
     }
 
     /**
      * As the reverse of do, this method substracts from num.
      */
     undoTransaction() {
-        // Move the item to the opposite direction
+        let temp = this.todoList.items[this.previousPosition];
+        this.todoList.items[this.previousPosition] = this.listItemCard;
+        this.todoList.items[this.newPosition] = temp;
     }
 
     /**
@@ -53,3 +57,5 @@ class ListItemOrderChange_Transaction{
         }
     }
 }
+
+export default ListItemOrderChange_Transaction

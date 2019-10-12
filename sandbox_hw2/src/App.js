@@ -17,6 +17,7 @@ class App extends Component {
     currentScreen: AppScreen.HOME_SCREEN,
     todoLists: testTodoListData.todoLists,
     currentList: null,
+    previousList: null,
     currentItem: null,
     createItem: false,
     num: 1,
@@ -132,9 +133,14 @@ class App extends Component {
   }
 
   loadList = (todoListToLoad) => {
+    if(this.state.previousList !== todoListToLoad)
+    {
+      this.jsTPSstack.clearAllTransactions();
+    }
     this.setState({
       currentScreen: AppScreen.LIST_SCREEN,
       currentList: todoListToLoad,
+      previousList: todoListToLoad,
       currentItem: null,
       num: this.state.num - 1
     });

@@ -139,7 +139,8 @@ export class ListItemsTable extends Component {
                             listItem={todoItem}
                             todoList={this.props.todoList}
                             loadList={this.props.loadList}
-                            editListItemCard={this.props.editListItemCard}  />
+                            editListItemCard={this.props.editListItemCard}
+                            jsTPSstack={this.props.jsTPSstack}  />
                     ))
                 }
                 <div className='list_item_add_card' onClick={this.props.createListItemCard}>

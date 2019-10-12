@@ -1,7 +1,15 @@
 Planning:
 
-List Name Change                                :       ListScreen
-Owner Name Change                               :       ListScreen
-List Item Order Change (i.e. move up/down>      :       ListItemsCard
-List Item Removal                               :       ListItemsCard
-List Item Edit (i.e. result of submit)          :       ItemScreen
+                    Task                        :           Class           :                   Status
+-------------------------------------------------------------------------------------------------------------------------------------
+List Name Change                                :       ListScreen          :   Implemented - test undoTransaction()
+Owner Name Change                               :       ListScreen          :   Implemented - test undoTransaction()
+List Item Order Change (i.e. move up/down>      :       ListItemsCard       :   Implemented - test undoTransaction()
+List Item Removal                               :       ListItemsCard       :   Implemented - test undoTransaction()
+List Item Edit (i.e. result of submit)          :       ItemScreen          :   Have to implement
+                                                :                           :
+Event Listener for Ctrl + Z                     :       App                 :   Have to implement
+Event Listener for Ctrl + Y                     :       App                 :   Have to implement
+
+
+Things to do: 

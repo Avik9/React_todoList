@@ -1,10 +1,10 @@
-import jsTPS_Transaction from './jsTPS_Transaction'
+import jsTPS from './jsTPS'
 
 /**
  *
  * @author Avik Kadakia
  */
-class ListItemRemoval_Transaction extends jsTPS_Transaction{
+class ListItemRemoval_Transaction extends jsTPS{
     /**
      * Constructor for this transaction, it initializes this
      * object with all the data needed to both do and undo
@@ -26,7 +26,7 @@ class ListItemRemoval_Transaction extends jsTPS_Transaction{
      * This transaction simply adds the value to the num.
      */
     doTransaction() {
-        // Remove the item from the list
+        this.toDoList.items.splice(this.positionInList, 1);
     }
 
     /**
@@ -45,3 +45,5 @@ class ListItemRemoval_Transaction extends jsTPS_Transaction{
         return this.ListItemCard.description + " was removed";
     }
 }
+
+export default ListItemRemoval_Transaction

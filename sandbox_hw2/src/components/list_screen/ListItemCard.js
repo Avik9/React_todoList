@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import ListItemRemoval_Transaction from '../jsTPS/ListItemRemoval_Transaction';
+import ListItemOrderChange_Transaction from '../jsTPS/ListItemOrderChange_Transaction';
 
 var moveUp = require('../../images/Up.png');
 var moveDown = require('../../images/Down.png');
@@ -22,9 +24,9 @@ export class ListItemCard extends Component {
         let indexOfItem = this.props.todoList.items.indexOf(this.props.listItem);
 
         if (indexOfItem > 0) {
-            let temp = this.props.todoList.items[indexOfItem - 1];
-            this.props.todoList.items[indexOfItem - 1] = this.props.listItem;
-            this.props.todoList.items[indexOfItem] = temp;
+            let moveUpTransaction = new ListItemOrderChange_Transaction(indexOfItem, indexOfItem - 1, this.props.listItem, this.props.todoList);
+            
+            this.props.jsTPSstack.addTransaction(moveUpTransaction);
         }
         this.props.loadList(this.props.todoList);
         e.stopPropagation();
@@ -35,9 +37,9 @@ export class ListItemCard extends Component {
         let indexOfItem = this.props.todoList.items.indexOf(this.props.listItem);
 
         if (indexOfItem < this.getLength() - 1) {
-            let temp = this.props.todoList.items[indexOfItem + 1];
-            this.props.todoList.items[indexOfItem + 1] = this.props.listItem;
-            this.props.todoList.items[indexOfItem] = temp;
+            let moveUpTransaction = new ListItemOrderChange_Transaction(indexOfItem, indexOfItem + 1, this.props.listItem, this.props.todoList);
+            
+            this.props.jsTPSstack.addTransaction(moveUpTransaction);
         }
         this.props.loadList(this.props.todoList);
         e.stopPropagation();
@@ -46,7 +48,10 @@ export class ListItemCard extends Component {
     deleteItem = (e) =>
     {
         let indexOfItem = this.props.todoList.items.indexOf(this.props.listItem);
-        this.props.todoList.items.splice(indexOfItem, 1);
+
+        let removeitemCardTransaction = new ListItemRemoval_Transaction(indexOfItem, this.props.listItem, this.props.todoList);
+
+        this.props.jsTPSstack.addTransaction(removeitemCardTransaction);
 
         this.props.loadList(this.props.todoList);
         e.stopPropagation();

@@ -35,9 +35,12 @@ export class ListScreen extends Component {
             newName = "(No Name)";
         }
 
-        let newNameTransaction = new ListNameChange_Transaction(oldName, newName, this.props.todoList);
+        if(newName !== oldName)
+        {
+            let newNameTransaction = new ListNameChange_Transaction(oldName, newName, this.props.todoList);
 
-        this.props.jsTPSstack.addTransaction(newNameTransaction);
+            this.props.jsTPSstack.addTransaction(newNameTransaction);
+        }
 
         return this.props.todoList.name;
     }
@@ -51,15 +54,18 @@ export class ListScreen extends Component {
             newOwner = "(No Owner)";
         }
 
-        let newOwnerTransaction = new ListOwnerChange_Transaction(oldOwner, newOwner, this.props.todoList);
+        if(oldOwner !== newOwner)
+        {
+            let newOwnerTransaction = new ListOwnerChange_Transaction(oldOwner, newOwner, this.props.todoList);
 
-        this.props.jsTPSstack.addTransaction(newOwnerTransaction);
+            this.props.jsTPSstack.addTransaction(newOwnerTransaction);
+        }
 
         return this.props.todoList.owner;
     }
 
     render() {
-        this.props.jsTPSstack.clearAllTransactions();
+        // this.props.jsTPSstack.clearAllTransactions();
         return (
             <div id="todo_list">
                 <ListHeading goHome={this.props.goHome} />
@@ -90,7 +96,8 @@ export class ListScreen extends Component {
                                 deleteItem={this.deleteItem}
                                 loadList={this.props.loadList}
                                 editListItemCard={this.props.editListItemCard}
-                                createListItemCard={this.props.createListItemCard} />
+                                createListItemCard={this.props.createListItemCard}
+                                jsTPSstack={this.props.jsTPSstack} />
             </div>
         )
     }
