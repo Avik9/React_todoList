@@ -6,7 +6,7 @@ List Name Change                                :       ListScreen          :   
 Owner Name Change                               :       ListScreen          :   Implemented - test undoTransaction()
 List Item Order Change (i.e. move up/down>      :       ListItemsCard       :   Implemented - test undoTransaction()
 List Item Removal                               :       ListItemsCard       :   Implemented - test undoTransaction()
-List Item Edit (i.e. result of submit)          :       ItemScreen          :   Have to implement
+List Item Edit (i.e. result of submit)          :       ItemScreen          :   Implemented - test undoTransaction()
                                                 :                           :
 Event Listener for Ctrl + Z                     :       App                 :   Have to implement
 Event Listener for Ctrl + Y                     :       App                 :   Have to implement
