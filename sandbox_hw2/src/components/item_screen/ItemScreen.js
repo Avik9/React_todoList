@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
+import ListItemEdit_Transaction from '../jsTPS/ListItemEdit_Transaction';
 
 export class ItemScreen extends Component {
 
@@ -35,16 +36,19 @@ export class ItemScreen extends Component {
      */
     updateItem = () => {
         let description = document.getElementById('item_description_textfield').value;
-        this.props.currentItem.description = description === '' ? "(No Description)" :  description;
-
         let assignedTo = document.getElementById('assigned_to_textfield').value;
-        this.props.currentItem.assigned_to = assignedTo;
-
         let dueDate = document.getElementById('due_date_dropdown').value;
-        this.props.currentItem.due_date = dueDate;
-
         let completed = document.getElementById('completed_checkbox').checked;
-        this.props.currentItem.completed = completed;
+
+        if(this.props.currentItem.description !== description 
+            || this.props.currentItem.assigned_to !== assignedTo
+            || this.props.currentItem.due_date !== dueDate
+            || this.props.currentItem.completed !== completed)
+        {
+            let editItemTransaction = new ListItemEdit_Transaction(description, assignedTo, dueDate, completed, this.props.currentItem);
+
+            this.props.jsTPSstack.addTransaction(editItemTransaction);
+        }
 
         this.props.loadList(this.props.todoList);
     }
@@ -84,8 +88,8 @@ export class ItemScreen extends Component {
 
         let newItem = {
             key: position,
-            description: document.getElementById('item_description_textfield').value === "" ? "(No Description)" :  document.getElementById('item_description_textfield').value,
-            assigned_to: document.getElementById('assigned_to_textfield').value,
+            description: document.getElementById('item_description_textfield').value === "" ? "(No Description)" : document.getElementById('item_description_textfield').value,
+            assigned_to: document.getElementById('assigned_to_textfield').value === '' ? ('Not assigned') : document.getElementById('assigned_to_textfield').value,
             due_date: document.getElementById('due_date_dropdown').value,
             completed: document.getElementById('completed_checkbox').checked
         }

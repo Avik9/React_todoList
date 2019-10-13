@@ -14,26 +14,66 @@ class ListItemEdit_Transaction extends jsTPS_Transaction{
      * @param newItem
      * @param toDoList
      */
-    constructor(prevItem, newItem, toDoList) {
+    constructor(newDescription, newAssignedTo, newDueDate, newCompleted, listItemCard) {
         // KEEP THESE FOR LATER
         super();
-        this.previousItem = prevItem;
-        this.newItem = newItem;
-        this.toDoList = toDoList;
+        this.newDescription = newDescription;
+        this.newAssignedTo = newAssignedTo;
+        this.newDueDate = newDueDate;
+        this.newCompleted = newCompleted;
+        this.listItem = listItemCard;
     }
 
     /**
      * This transaction simply adds the value to the num.
      */
     doTransaction() {
-        // Change the old item to the new item
+        if(this.listItem.description !== this.newDescription)
+        {
+            this.oldDescription = this.listItem.description;
+            this.listItem.description = this.newDescription;
+        }
+
+        if(this.listItem.assigned_to !== this.newAssignedTo)
+        {
+            this.oldAssigned_to = this.listItem.assigned_to;
+            this.listItem.assigned_to = this.newAssignedTo;
+        }
+
+        if(this.listItem.due_date !== this.newDueDate)
+        {
+            this.oldDueDate = this.listItem.assigned_to;
+            this.listItem.due_date = this.newDueDate;
+        }
+
+        if(this.listItem.completed !== this.newCompleted)
+        {
+            this.oldCompleted = this.listItem.completed;
+            this.listItem.completed = this.newCompleted;
+        }
     }
 
     /**
      * As the reverse of do, this method substracts from num.
      */
     undoTransaction() {
-        // Change the new item to the old item
+        if(this.oldDescription)
+        {
+            this.listItem.description = this.oldDescription;
+        }
+        if(this.oldAssigned_to)
+        {
+            this.listItem.assigned_to = this.oldAssigned_to;
+        }
+        if(this.oldDueDate)
+        {
+            this.listItem.due_date = this.oldDueDate;
+        }
+
+        if(this.oldCompleted)
+        {
+            this.listItem.due_date = this.oldCompleted;
+        }
     }
 
     /**
