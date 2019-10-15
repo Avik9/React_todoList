@@ -2,14 +2,16 @@ import React, { Component } from 'react'
 import ListHeading from './ListHeading'
 import ListItemsTable from './ListItemsTable'
 import ListTrash from './ListTrash'
-import PropTypes from 'prop-types';
-import { list } from 'postcss';
+// import PropTypes from 'prop-types';
+// import { list } from 'postcss';
 
 // FOR jsTPS
 import ListNameChange_Transaction from '../jsTPS/ListNameChange_Transaction'
 import ListOwnerChange_Transaction from '../jsTPS/ListOwnerChange_Transaction'
 
+let keys = []
 export class ListScreen extends Component {
+
     getListName() {
         if (this.props.todoList) {
             let name = this.props.todoList.name;
@@ -25,18 +27,15 @@ export class ListScreen extends Component {
         }
     }
 
-    setListName = () =>
-    {
+    setListName = () => {
         let oldName = this.props.todoList.name;
-        
+
         let newName = document.getElementById('list_name_textfield').value;
-        if (newName === "")
-        {
+        if (newName === "") {
             newName = "(No Name)";
         }
 
-        if(newName !== oldName)
-        {
+        if (newName !== oldName) {
             let newNameTransaction = new ListNameChange_Transaction(oldName, newName, this.props.todoList);
 
             this.props.jsTPSstack.addTransaction(newNameTransaction);
@@ -45,17 +44,14 @@ export class ListScreen extends Component {
         return this.props.todoList.name;
     }
 
-    setListOwner = () =>
-    {
+    setListOwner = () => {
         let oldOwner = this.props.todoList.owner;
         let newOwner = document.getElementById('list_owner_textfield').value;
-        if (newOwner === "")
-        {
+        if (newOwner === "") {
             newOwner = "(No Owner)";
         }
 
-        if(oldOwner !== newOwner)
-        {
+        if (oldOwner !== newOwner) {
             let newOwnerTransaction = new ListOwnerChange_Transaction(oldOwner, newOwner, this.props.todoList);
 
             this.props.jsTPSstack.addTransaction(newOwnerTransaction);
@@ -65,41 +61,70 @@ export class ListScreen extends Component {
     }
 
     render() {
-        // this.props.jsTPSstack.clearAllTransactions();
+
+        window.addEventListener("keydown", this.keysPressed, false);
+        window.addEventListener("keyup", this.keysReleased, false);
+
         return (
             <div id="todo_list">
                 <ListHeading goHome={this.props.goHome} />
-                <ListTrash listName = {this.getListName()} deleteList={this.props.deleteList}/>
+                <ListTrash listName={this.getListName()} deleteList={this.props.deleteList} />
                 <div id="list_details_container">
                     <div id="list_details_name_container" className="text_toolbar">
                         <span id="list_name_prompt">Name:</span>
-                        <input 
-                            defaultValue={this.getListName()} 
-                            type="text" 
+                        <input
+                            defaultValue={this.getListName()}
+                            type="text"
                             id="list_name_textfield"
                             onBlur={() => this.setListName()} />
-                            
+
                     </div>
                     <div id="list_details_owner_container" className="text_toolbar">
                         <span id="list_owner_prompt">Owner:</span>
-                        <input 
+                        <input
                             defaultValue={this.getListOwner()}
-                            type="text" 
+                            type="text"
                             id="list_owner_textfield"
-                            onBlur={() => this.setListOwner()} 
-                            />
+                            onBlur={() => this.setListOwner()}
+                        />
                     </div>
                 </div>
-                <ListItemsTable todoList={this.props.todoList} 
-                                moveUp={this.moveUp}
-                                moveDown={this.moveDown}
-                                deleteItem={this.deleteItem}
-                                loadList={this.props.loadList}
-                                editListItemCard={this.props.editListItemCard}
-                                createListItemCard={this.props.createListItemCard}
-                                jsTPSstack={this.props.jsTPSstack} />
+                <ListItemsTable todoList={this.props.todoList}
+                    moveUp={this.moveUp}
+                    moveDown={this.moveDown}
+                    deleteItem={this.deleteItem}
+                    loadList={this.props.loadList}
+                    editListItemCard={this.props.editListItemCard}
+                    createListItemCard={this.props.createListItemCard}
+                    jsTPSstack={this.props.jsTPSstack} />
             </div>
         )
+    }
+
+    keysPressed(e) {
+        // store an entry for every key pressed
+        keys[e.keyCode] = true;
+        
+        // Ctrl + Z
+        if (keys[17] && keys[90]) {
+            // do something
+            console.log("Pressed Ctrl + Z")
+        }
+        
+        // Ctrl + Y
+        if (keys[17] && keys[89]) {
+            // do something
+
+            console.log("Pressed Ctrl + Y")
+        
+            // prevent default browser behavior
+            e.preventDefault();	
+        }
+    }
+
+    keysReleased(e) {
+        // mark keys that were released
+        keys[e.keyCode] = false;
     }
 }
 

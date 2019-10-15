@@ -50,21 +50,19 @@ class App extends Component {
   showDeleteDialog = () => {
     document.getElementById('modal_yes_no_dialog_background_hide').id = 'modal_yes_no_dialog_background_show';
 
-    if(!this.state.num)
-    {
+    if (!this.state.num) {
       document.getElementById('list_delete_list').addEventListener("click", () => this.deleteList(this.state.currentList.name));
       document.getElementById('list_cancel_delete_list').addEventListener("click", () => this.hideDeleteDialog());
-      this.setState({num: -10});
-    
+      this.setState({ num: -10 });
+
     }
   }
 
   hideDeleteDialog = () => {
     let element = document.getElementById('modal_yes_no_dialog_background_show');
 
-    if(element)
-    {
-        element.id = 'modal_yes_no_dialog_background_hide';
+    if (element) {
+      element.id = 'modal_yes_no_dialog_background_hide';
     }
   }
 
@@ -114,7 +112,7 @@ class App extends Component {
   prependList(listToPrepend) {
     let tempTodoLists = this.state.todoLists;
     tempTodoLists.unshift(listToPrepend);
-    this.setState({todoLists: tempTodoLists});
+    this.setState({ todoLists: tempTodoLists });
   }
 
   /**
@@ -126,15 +124,14 @@ class App extends Component {
     // REMOVE IT IF IT EXISTS
     let tempTodoLists = this.state.todoLists;
     let indexOfList = tempTodoLists.indexOf(listToRemove);
-    if (indexOfList >= 0){
+    if (indexOfList >= 0) {
       tempTodoLists.splice(indexOfList, 1);
     }
-    this.setState({todoLists: tempTodoLists});
+    this.setState({ todoLists: tempTodoLists });
   }
 
   loadList = (todoListToLoad) => {
-    if(this.state.previousList !== todoListToLoad)
-    {
+    if (this.state.previousList !== todoListToLoad) {
       this.jsTPSstack.clearAllTransactions();
     }
     this.setState({
