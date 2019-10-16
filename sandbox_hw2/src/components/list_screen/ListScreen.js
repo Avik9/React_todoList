@@ -62,8 +62,8 @@ export class ListScreen extends Component {
 
     render() {
 
-        window.addEventListener("keydown", this.keysPressed, false);
-        window.addEventListener("keyup", this.keysReleased, false);
+        window.addEventListener("keydown", (e) => this.keysPressed(e), false);
+        window.addEventListener("keyup", (e) => this.keysReleased(e), false);
 
         return (
             <div id="todo_list">
@@ -101,28 +101,41 @@ export class ListScreen extends Component {
         )
     }
 
-    keysPressed(e) {
+    keysPressed = (e) => { 
         // store an entry for every key pressed
         keys[e.keyCode] = true;
         
         // Ctrl + Z
         if (keys[17] && keys[90]) {
             // do something
-            console.log("Pressed Ctrl + Z")
+            console.log("Pressed Ctrl + Z");
+            this.props.jsTPSstack.undoTransaction();
+
+            keys[17] = false; 
+            keys[90] = false;
+
+            // prevent default browser behavior
+            e.preventDefault();	
         }
         
         // Ctrl + Y
         if (keys[17] && keys[89]) {
             // do something
 
-            console.log("Pressed Ctrl + Y")
-        
+            console.log("Pressed Ctrl + Y");
+            this.props.jsTPSstack.doTransaction();
+
+            keys[17] = false; 
+            keys[89] = false;
+
             // prevent default browser behavior
             e.preventDefault();	
         }
+
+        return;
     }
 
-    keysReleased(e) {
+    keysReleased = (e) => {
         // mark keys that were released
         keys[e.keyCode] = false;
     }

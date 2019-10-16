@@ -25,7 +25,7 @@ class App extends Component {
 
   constructor() {
     super();
-    this.jsTPSstack = new jsTPS()
+    this.jsTPSstack = new jsTPS();
   }
 
   createListItemCard = () => {
@@ -43,9 +43,7 @@ class App extends Component {
   }
 
   goHome = () => {
-
-    window.removeEventListener("keydown", this.keysPressed, false);
-    window.removeEventListener("keyup", this.keysReleased, false);
+    this.jsTPSstack.clearAllTransactions();
 
     this.setState({ currentScreen: AppScreen.HOME_SCREEN });
     this.setState({ currentList: null });
