@@ -76,6 +76,11 @@ export class jsTPS{
       // AND EXECUTE IT
       this.doTransaction(); 
   }
+
+  peekTransaction()
+  {
+      return this.transactions[this.mostRecentTransaction+1];
+  }
    
   /**
    * This function executes the transaction at the location of the counter,
@@ -113,12 +118,12 @@ export class jsTPS{
    * of the top of the stack.
    */
   clearAllTransactions() {
-      // REMOVE ALL THE TRANSACTIONS
-      this.transactions = [];
-      
-      // MAKE SURE TO RESET THE LOCATION OF THE
-      // TOP OF THE TPS STACK TOO
-      this.mostRecentTransaction = -1;        
+    // REMOVE ALL THE TRANSACTIONS
+    this.transactions = [];
+
+    // MAKE SURE TO RESET THE LOCATION OF THE
+    // TOP OF THE TPS STACK TOO
+    this.mostRecentTransaction = -1;        
   }
 
   /**
