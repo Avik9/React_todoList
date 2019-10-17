@@ -8,9 +8,6 @@ import ListTrash from './ListTrash'
 // FOR jsTPS
 import ListNameChange_Transaction from '../jsTPS/ListNameChange_Transaction'
 import ListOwnerChange_Transaction from '../jsTPS/ListOwnerChange_Transaction'
-import ListItemOrderChange_Transaction from '../jsTPS/ListItemOrderChange_Transaction'
-import ListItemEdit_Transaction from '../jsTPS/ListItemEdit_Transaction'
-import ListItemRemoval_Transaction from '../jsTPS/ListItemRemoval_Transaction'
 
 let keys = []
 export class ListScreen extends Component {
@@ -111,43 +108,42 @@ export class ListScreen extends Component {
         // Ctrl + Z
         if (keys[17] && keys[90]) {
             // do something
-            console.log("Pressed Ctrl + Z");
 
-            console.log("List item order change");
-            
+            if(this.props.jsTPSstack.hasTransactionToUndo())
+            {
+                this.props.jsTPSstack.undoTransaction();
+
+                document.getElementById('list_name_textfield').value = this.props.todoList.name;
+                document.getElementById('list_owner_textfield').value = this.props.todoList.owner;
+
+                this.props.loadList(this.props.getCurrentList());
+            }
             
             keys[17] = false; 
             keys[90] = false;
 
             // prevent default browser behavior
             e.preventDefault();	
-
-            
-            this.props.jsTPSstack.undoTransaction();
-
-            document.getElementById('list_name_textfield').value = this.props.todoList.name;
-            document.getElementById('list_owner_textfield').value = this.props.todoList.owner;
-
-            this.props.loadList(this.props.todoList);
         }
         
         // Ctrl + Y
         if (keys[17] && keys[89]) {
             // do something
 
-            console.log("Pressed Ctrl + Y");
-            this.props.jsTPSstack.doTransaction();
+            if(this.props.jsTPSstack.hasTransactionToRedo()){
+                this.props.jsTPSstack.doTransaction();
 
+                document.getElementById('list_name_textfield').value = this.props.todoList.name;
+                document.getElementById('list_owner_textfield').value = this.props.todoList.owner;
+    
+                this.props.loadList(this.props.getCurrentList());
+            }
+            
             keys[17] = false; 
             keys[89] = false;
 
             // prevent default browser behavior
             e.preventDefault();	
-
-            document.getElementById('list_name_textfield').value = this.props.todoList.name;
-            document.getElementById('list_owner_textfield').value = this.props.todoList.owner;
-
-            this.props.loadList(this.props.todoList);
         }
 
         return;

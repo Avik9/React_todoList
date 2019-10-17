@@ -33,7 +33,7 @@ class ListItemRemoval_Transaction extends jsTPS{
      * As the reverse of do, this method substracts from num.
      */
     undoTransaction() {
-        // Add the item back to the list
+        this.toDoList.items.splice(this.positionInList, 0, this.ListItemCard);
     }
 
     /**

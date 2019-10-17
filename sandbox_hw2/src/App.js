@@ -47,6 +47,8 @@ class App extends Component {
 
     this.setState({ currentScreen: AppScreen.HOME_SCREEN });
     this.setState({ currentList: null });
+    let x = this.state.currentList;
+    console.log(x);
   }
 
   showDeleteDialog = () => {
@@ -79,6 +81,11 @@ class App extends Component {
         }
       }
     });
+  }
+
+  getCurrentList = () =>
+  {
+    return this.state.currentList;
   }
 
   createNewList = () => {
@@ -165,7 +172,8 @@ class App extends Component {
           loadList={this.loadList}
           editListItemCard={this.editListItemCard}
           createListItemCard={this.createListItemCard}
-          jsTPSstack={this.jsTPSstack} />;
+          jsTPSstack={this.jsTPSstack}
+          getCurrentList={this.getCurrentList} />;
       case AppScreen.ITEM_SCREEN:
         return <ItemScreen
           currentItem={this.state.currentItem}
