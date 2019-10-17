@@ -48,9 +48,11 @@ export class ItemScreen extends Component {
             let editItemTransaction = new ListItemEdit_Transaction(description, assignedTo, dueDate, completed, this.props.currentItem);
 
             this.props.jsTPSstack.addTransaction(editItemTransaction);
+
+            this.props.loadList(this.props.todoList);
         }
 
-        this.props.loadList(this.props.todoList);
+        return;
     }
 
     /**

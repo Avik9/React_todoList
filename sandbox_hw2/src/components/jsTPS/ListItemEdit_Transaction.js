@@ -17,14 +17,18 @@ class ListItemEdit_Transaction extends jsTPS_Transaction{
     constructor(newDescription, newAssignedTo, newDueDate, newCompleted, listItemCard) {
         // KEEP THESE FOR LATER
         super();
+        // New Values
         this.newDescription = newDescription;
         this.newAssignedTo = newAssignedTo;
         this.newDueDate = newDueDate;
         this.newCompleted = newCompleted;
+
+        // Old Value
         this.oldDescription = listItemCard.description;
         this.oldAssignedTo = listItemCard.assigned_to;
         this.oldDueDate = listItemCard.due_date;
         this.oldCompleted = listItemCard.completed;
+
         this.listItem = listItemCard;
     }
 
@@ -34,7 +38,6 @@ class ListItemEdit_Transaction extends jsTPS_Transaction{
     doTransaction() {
         this.listItem.description = this.newDescription;
         this.listItem.assigned_to = this.newAssignedTo;
-        this.oldDueDate = this.listItem.assigned_to;
         this.listItem.due_date = this.newDueDate;
         this.listItem.completed = this.newCompleted;
     }
@@ -44,9 +47,9 @@ class ListItemEdit_Transaction extends jsTPS_Transaction{
      */
     undoTransaction() {
         this.listItem.description = this.oldDescription;
-        this.listItem.assigned_to = this.oldAssigned_to;
+        this.listItem.assigned_to = this.oldAssignedTo;
         this.listItem.due_date = this.oldDueDate;
-        this.listItem.due_date = this.oldCompleted;
+        this.listItem.completed = this.oldCompleted;
     }
 
     /**

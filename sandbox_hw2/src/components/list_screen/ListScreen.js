@@ -107,7 +107,6 @@ export class ListScreen extends Component {
         
         // Ctrl + Z
         if (keys[17] && keys[90]) {
-            // do something
 
             if(this.props.jsTPSstack.hasTransactionToUndo())
             {
