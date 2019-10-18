@@ -47,17 +47,19 @@ class App extends Component {
 
     this.setState({ currentScreen: AppScreen.HOME_SCREEN });
     this.setState({ currentList: null });
-    let x = this.state.currentList;
-    console.log(x);
   }
 
   showDeleteDialog = () => {
-    document.getElementById('modal_yes_no_dialog_background_hide').id = 'modal_yes_no_dialog_background_show';
-
-    if (!this.state.num) {
-      document.getElementById('list_delete_list').addEventListener("click", () => this.deleteList(this.state.currentList.name));
+    if(document.getElementById('modal_yes_no_dialog_background_hide'))
+    {
+      document.getElementById('modal_yes_no_dialog_background_hide').id = 'modal_yes_no_dialog_background_show';
+    }
+    
+    if (this.state.currentList) {
+      let listToDelete = this.state.currentList.name;
+      document.getElementById('list_delete_list').addEventListener("click", () => this.deleteList(listToDelete));
       document.getElementById('list_cancel_delete_list').addEventListener("click", () => this.hideDeleteDialog());
-      this.setState({ num: -10 });
+      this.setState({num: 10});
 
     }
   }
@@ -148,7 +150,7 @@ class App extends Component {
       currentList: todoListToLoad,
       previousList: todoListToLoad,
       currentItem: null,
-      num: this.state.num - 1
+      num: this.state.num + 1
     });
     this.moveListToTop(todoListToLoad);
     console.log("currentList: " + this.state.currentList);

@@ -120,7 +120,7 @@ export class ItemScreen extends Component {
                     </div>
                     <div id="completed_container" class="text_toolbar">
                         <span id="completed_prompt">Completed:</span>
-                        <input type="checkbox" defaultValue={itemToLoad.completed} id="completed_checkbox" />
+                        <input type="checkbox" checked={itemToLoad.completed} id="completed_checkbox" />
                     </div>
                     <div id="list_submit_buttons">
                         <button id="list_submit_list" onClick={this.submitItemChanges}>Submit</button>
