@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import ListHeading from './ListHeading'
 import ListItemsTable from './ListItemsTable'
 import ListTrash from './ListTrash'
-// import PropTypes from 'prop-types';
-// import { list } from 'postcss';
 
 // FOR jsTPS
 import ListNameChange_Transaction from '../jsTPS/ListNameChange_Transaction'
@@ -60,11 +58,17 @@ export class ListScreen extends Component {
         return this.props.todoList.owner;
     }
 
-    render() {
-
+    componentDidMount(){
         window.addEventListener("keydown", (e) => this.keysPressed(e), false);
         window.addEventListener("keyup", (e) => this.keysReleased(e), false);
+    }
 
+    componentWillUnmount(){
+        window.removeEventListener("keydown", (e) => this.keysPressed(e), false);
+        window.removeEventListener("keyup", (e) => this.keysReleased(e), false);
+    }
+
+    render() {
         return (
             <div id="todo_list">
                 <ListHeading goHome={this.props.goHome} />
@@ -116,6 +120,7 @@ export class ListScreen extends Component {
                 document.getElementById('list_owner_textfield').value = this.props.todoList.owner;
 
                 this.props.loadList(this.props.getCurrentList());
+                this.setState({});
             }
             
             keys[17] = false; 

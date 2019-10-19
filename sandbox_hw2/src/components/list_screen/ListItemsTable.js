@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import ListItemCard from './ListItemCard'
 
+// for jsTPS
+import SortList_Transaction from '../jsTPS/SortList_Transaction'
+
 var addCard = require('../../images/Add.png');
 
 export class ListItemsTable extends Component {
@@ -60,7 +63,16 @@ export class ListItemsTable extends Component {
      */
     sortTasks = async(sortingCriteria) => {
         await this.setState({currentItemSortCriteria: sortingCriteria});
+        let prevList= []
+        let newList = [];
+        this.props.todoList.items.forEach(item => { prevList.push(item)});;
         this.props.todoList.items.sort(this.compare);
+        this.props.todoList.items.forEach(item => { newList.push(item)});;
+
+        let sortListTransaction = new SortList_Transaction(this.props.todoList, prevList, newList);
+        
+        this.props.jsTPSstack.addTransaction(sortListTransaction);
+
         this.setState({currentItemSortCriteria: sortingCriteria});
     }
 
