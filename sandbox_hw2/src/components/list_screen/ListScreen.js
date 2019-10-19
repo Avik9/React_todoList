@@ -141,6 +141,7 @@ export class ListScreen extends Component {
                 document.getElementById('list_owner_textfield').value = this.props.todoList.owner;
     
                 this.props.loadList(this.props.getCurrentList());
+                this.setState({});
             }
             
             keys[17] = false; 

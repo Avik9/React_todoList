@@ -15,6 +15,7 @@ class SortList_Transaction extends jsTPS_Transaction{
      */
     constructor(todoList, prevList, newList) {
         // KEEP THESE FOR LATER
+        
         super();
         // New Values
         this.previousList = prevList;
@@ -26,14 +27,14 @@ class SortList_Transaction extends jsTPS_Transaction{
      * This transaction simply adds the value to the num.
      */
     doTransaction() {
-        this.todoList = this.newList;
+        this.todoList.items = this.newList;
     }
 
     /**
      * As the reverse of do, this method substracts from num.
      */
     undoTransaction() {
-        this.todoList.items = []; // this.previousList;
+        this.todoList.items = this.previousList; // this.previousList;
     }
 
     /**

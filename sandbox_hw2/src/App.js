@@ -20,7 +20,6 @@ class App extends Component {
     previousList: null,
     currentItem: null,
     createItem: false,
-    num: 1,
   }
 
   constructor() {
@@ -53,14 +52,6 @@ class App extends Component {
     if(document.getElementById('modal_yes_no_dialog_background_hide'))
     {
       document.getElementById('modal_yes_no_dialog_background_hide').id = 'modal_yes_no_dialog_background_show';
-    }
-    
-    if (this.state.currentList) {
-      let listToDelete = this.state.currentList.name;
-      document.getElementById('list_delete_list').addEventListener("click", () => this.deleteList(listToDelete));
-      document.getElementById('list_cancel_delete_list').addEventListener("click", () => this.hideDeleteDialog());
-      this.setState({num: 10});
-
     }
   }
 
@@ -98,6 +89,10 @@ class App extends Component {
       "owner": "Unknown",
       "items": []
     }
+
+    this.setState({
+      currentList: newList,
+    });
 
     this.state.todoLists.push(newList);
     this.loadList(newList);
@@ -150,14 +145,17 @@ class App extends Component {
       currentList: todoListToLoad,
       previousList: todoListToLoad,
       currentItem: null,
-      num: this.state.num + 1
     });
     this.moveListToTop(todoListToLoad);
     console.log("currentList: " + this.state.currentList);
     console.log("currentScreen: " + this.state.currentScreen);
   }
 
-  // Add the listener here with listener()
+  componentDidMount()
+  {
+    document.getElementById('list_delete_list').addEventListener("click", () => this.deleteList(this.state.currentList.name));
+    document.getElementById('list_cancel_delete_list').addEventListener("click", () => this.hideDeleteDialog());
+  }
 
   render() {
     switch (this.state.currentScreen) {
